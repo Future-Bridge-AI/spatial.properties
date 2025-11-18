@@ -1,0 +1,76 @@
+Building obstacle‑aware, geometry‑correct pathfinding
+
+From paths → valid geometry → reliable agents
+
+1) Plan paths on a graph (A / BFS).*
+
+Represent free space as a grid or visibility graph (nodes = waypoints, edges = traversable segments).
+
+Use A* for optimal cost routes or BFS for unweighted “fewest hops” routing.
+
+Python tip: networkx.astar_path(G, src, dst, heuristic) and networkx.shortest_path(G, src, dst).
+
+2) Enforce spatial validity with DE‑9IM predicates.
+
+Before accepting a route, turn the path into a LineString and validate against obstacles and boundaries using DE‑9IM predicates (the 9‑cell matrix standard for how two geometries relate).
+
+Core checks (Shapely):
+
+inside map: path.within(world)
+
+no collisions: path.disjoint(union_of_obstacles)
+
+legal contact: not path.crosses(forbidden_zones) / path.relate(obstacle, 'FF*FF****') (no boundary/inside intersections).
+
+3) Pair maps with lightweight vision + embeddings (optional).
+
+When you must derive waypoints from imagery or sketches, run a small local VLM snapshot to propose candidates, embed them, then verify with geometry predicates (Shapely) before use.
+
+Rule: model suggests, geometry decides.
+
+4) Make it self‑improving with DSPy.
+
+Wrap the above steps as a neuro‑symbolic controller: LLM plans → tools (A*, Shapely) execute → validators gate outputs → feedback refines prompts.
+
+Evaluate using text‑spatial QA (e.g., SpartQA‑style questions) so you can measure: “Does the route avoid polygons A/B?”, “Is the path inside the service corridor?”, etc.
+
+Minimal Python sketch
+import networkx as nx
+from shapely.geometry import LineString
+from shapely.ops import unary_union
+
+# 1) Graph plan (A*)
+G = nx.Graph()
+# ... add nodes with pos=(x,y) and weighted edges ...
+def h(a, b):
+    ax, ay = G.nodes[a]['pos']; bx, by = G.nodes[b]['pos']
+    return ((ax-bx)**2 + (ay-by)**2) ** 0.5
+
+path_nodes = nx.astar_path(G, 'S', 'T', heuristic=h)
+coords = [G.nodes[n]['pos'] for n in path_nodes]
+route = LineString(coords)
+
+# 2) Geometry checks (DE-9IM via predicates)
+world = ...                 # Polygon
+obstacles = [...]           # List[Polygon]
+forbidden = [...]           # List[Polygon]
+
+if route.is_simple and route.within(world):
+    if route.disjoint(unary_union(obstacles)) and all(not route.crosses(f) for f in forbidden):
+        approved = True
+    else:
+        approved = False
+else:
+    approved = False
+
+Practical tips
+
+Speed: Pre‑clip your graph to the walkable mask; index obstacles with an STRtree before validation.
+
+Topology first: Reject any LLM/tool output that fails DE‑9IM checks—don’t “fix up” illegal routes post‑hoc.
+
+Explainability: Log which predicate failed; it becomes an immediate, human‑readable reason code.
+
+Scalability: Tile the world (H3/S2). Plan per‑tile, then stitch and re‑validate seam edges.
+
+If you want, I can adapt this into your Spatial.Properties stack (e.g., validate routes against Spatial Packs, expose a /route API that returns both the path and a DE‑9IM “proof”).
