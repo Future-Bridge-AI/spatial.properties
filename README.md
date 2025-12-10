@@ -1,0 +1,2 @@
+# cng-stackstack.spatial.properties
+
