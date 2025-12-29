@@ -19,17 +19,265 @@ A minimal registry that:
 ### Manifest (JSON) — draft
 ```json
 {
-  "id": "wa-roads-2025-11-01",
-  "version": "2025.11.01",
-  "topics": ["roads","transport"],
-  "spatial": {"s2": ["4f12…"], "bbox": [112.9,-35.1,129.0,-13.6], "crs":"EPSG:4326"},
-  "artifacts": [
-    {"name":"roads.pmtiles","type":"pmtiles","bytes": 123456789,"sha256":"…"},
-    {"name":"roads.parquet","type":"geoparquet","bytes": 987654321,"sha256":"…"}
+  "pack_id": "spatial.properties:wa:land-greenfield:v1",
+  "version": "1.0.0",
+  "created_at": "2025-01-01T00:00:00Z",
+  "geography": "wa",
+  "theme": "land-greenfield",
+  "bbox": [112.9, -35.3, 129.0, -13.5],
+  "crs": "EPSG:4326",
+  "tenant": "demo",
+
+  "license": {
+    "id": "custom-wa-greenfield-eval",
+    "name": "WA Greenfield Evaluation License",
+    "attribution": "© 2025 Spatial.Properties and data licensors",
+    "url": "https://spatial.properties/licenses/wa-greenfield-eval-v1"
+  },
+
+  "provenance": {
+    "sources": [
+      {
+        "name": "Landgate Cadastral Parcels (demo subset)",
+        "id": "landgate-parcels-demo-2024-06",
+        "version": "2024-06",
+        "license": "custom",
+        "url": "https://example.landgate.wa.gov.au/metadata/parcels",
+        "sha256": "PLACEHOLDER_SHA_FOR_SOURCE_1"
+      },
+      {
+        "name": "WA Planning Scheme Zones (demo subset)",
+        "id": "dplh-zones-demo-2024-06",
+        "version": "2024-06",
+        "license": "custom",
+        "url": "https://example.dplh.wa.gov.au/metadata/zones",
+        "sha256": "PLACEHOLDER_SHA_FOR_SOURCE_2"
+      },
+      {
+        "name": "Vegetation & Environmental Constraints (demo subset)",
+        "id": "dbca-veg-demo-2024-06",
+        "version": "2024-06",
+        "license": "custom",
+        "url": "https://example.dbca.wa.gov.au/metadata/veg",
+        "sha256": "PLACEHOLDER_SHA_FOR_SOURCE_3"
+      },
+      {
+        "name": "DEM 5m (demo subset)",
+        "id": "dem-wa-5m-demo-2024-06",
+        "version": "2024-06",
+        "license": "custom",
+        "url": "https://example.dem.wa.gov.au/metadata/dem5m",
+        "sha256": "PLACEHOLDER_SHA_FOR_SOURCE_4"
+      }
+    ],
+    "derived_from": []
+  },
+
+  "layers": [
+    {
+      "id": "land.tenure",
+      "type": "vector",
+      "schema": "sp.land.tenure.v1",
+      "title": "Land Tenure",
+      "description": "Crown land, freehold, reserves and leases for greenfield development planning.",
+      "tilejson": "https://cdn.spatial.properties/packs/wa/land-greenfield/v1/land.tenure/tile.json",
+      "pmtiles": "https://cdn.spatial.properties/packs/wa/land-greenfield/v1/land.tenure.pmtiles",
+      "parquet": "s3://spatial-packs-dev-ap-southeast-2/wa/land-greenfield/v1/land.tenure/*.parquet",
+      "geometry_type": "Polygon",
+      "index": {
+        "h3_res": 9
+      },
+      "stats": {
+        "features": 123456,
+        "updated_at": "2025-01-01T00:00:00Z",
+        "geometry_valid_pct": 99.9,
+        "attribute_completeness": {
+          "tenure_type": 1.0,
+          "parcel_id": 1.0
+        }
+      },
+      "security": {
+        "classification": "public",
+        "visibility": ["demo:viewer", "demo:analyst"]
+      }
+    },
+    {
+      "id": "land.title_parcels",
+      "type": "vector",
+      "schema": "sp.land.parcels.v1",
+      "title": "Title Parcels",
+      "description": "Cadastral parcels suitable for subdivision and greenfield design.",
+      "tilejson": "https://cdn.spatial.properties/packs/wa/land-greenfield/v1/land.title_parcels/tile.json",
+      "pmtiles": "https://cdn.spatial.properties/packs/wa/land-greenfield/v1/land.title_parcels.pmtiles",
+      "parquet": "s3://spatial-packs-dev-ap-southeast-2/wa/land-greenfield/v1/land.title_parcels/*.parquet",
+      "geometry_type": "Polygon",
+      "index": {
+        "h3_res": 10
+      },
+      "stats": {
+        "features": 245678,
+        "updated_at": "2025-01-01T00:00:00Z",
+        "geometry_valid_pct": 99.95,
+        "attribute_completeness": {
+          "parcel_id": 1.0,
+          "lot_plan": 0.98,
+          "area_m2": 1.0
+        }
+      },
+      "security": {
+        "classification": "public",
+        "visibility": ["demo:viewer", "demo:analyst"]
+      }
+    },
+    {
+      "id": "planning.scheme_zones",
+      "type": "vector",
+      "schema": "sp.planning.scheme_zones.v1",
+      "title": "Planning Scheme Zones",
+      "description": "Local and region planning scheme zones for WA greenfield areas.",
+      "tilejson": "https://cdn.spatial.properties/packs/wa/land-greenfield/v1/planning.scheme_zones/tile.json",
+      "pmtiles": "https://cdn.spatial.properties/packs/wa/land-greenfield/v1/planning.scheme_zones.pmtiles",
+      "parquet": "s3://spatial-packs-dev-ap-southeast-2/wa/land-greenfield/v1/planning.scheme_zones/*.parquet",
+      "geometry_type": "Polygon",
+      "index": {
+        "h3_res": 10
+      },
+      "stats": {
+        "features": 34567,
+        "updated_at": "2025-01-01T00:00:00Z",
+        "geometry_valid_pct": 99.9,
+        "attribute_completeness": {
+          "zone_code": 1.0,
+          "zone_name": 0.99
+        }
+      },
+      "security": {
+        "classification": "public",
+        "visibility": ["demo:viewer", "demo:analyst"]
+      }
+    },
+    {
+      "id": "env.vegetation",
+      "type": "vector",
+      "schema": "sp.env.vegetation.v1",
+      "title": "Vegetation Extent",
+      "description": "Native vegetation extent and type for greenfield constraints analysis.",
+      "tilejson": "https://cdn.spatial.properties/packs/wa/land-greenfield/v1/env.vegetation/tile.json",
+      "pmtiles": "https://cdn.spatial.properties/packs/wa/land-greenfield/v1/env.vegetation.pmtiles",
+      "parquet": "s3://spatial-packs-dev-ap-southeast-2/wa/land-greenfield/v1/env.vegetation/*.parquet",
+      "geometry_type": "Polygon",
+      "index": {
+        "h3_res": 9
+      },
+      "stats": {
+        "features": 56789,
+        "updated_at": "2025-01-01T00:00:00Z",
+        "geometry_valid_pct": 99.5,
+        "attribute_completeness": {
+          "veg_type": 0.95,
+          "condition_class": 0.9
+        }
+      },
+      "security": {
+        "classification": "internal",
+        "visibility": ["demo:analyst"]
+      }
+    },
+    {
+      "id": "env.threatened_flora_buffered",
+      "type": "vector",
+      "schema": "sp.env.threatened_flora_buffered.v1",
+      "title": "Threatened Flora (Buffered)",
+      "description": "Buffered threatened flora locations for initial risk screening in greenfield developments.",
+      "tilejson": "https://cdn.spatial.properties/packs/wa/land-greenfield/v1/env.threatened_flora_buffered/tile.json",
+      "pmtiles": "https://cdn.spatial.properties/packs/wa/land-greenfield/v1/env.threatened_flora_buffered.pmtiles",
+      "parquet": "s3://spatial-packs-dev-ap-southeast-2/wa/land-greenfield/v1/env.threatened_flora_buffered/*.parquet",
+      "geometry_type": "Polygon",
+      "index": {
+        "h3_res": 9
+      },
+      "stats": {
+        "features": 1234,
+        "updated_at": "2025-01-01T00:00:00Z",
+        "geometry_valid_pct": 100.0,
+        "attribute_completeness": {
+          "species_group": 1.0
+        }
+      },
+      "security": {
+        "classification": "restricted",
+        "visibility": ["demo:analyst"]
+      }
+    },
+    {
+      "id": "elev.dem_5m",
+      "type": "raster",
+      "schema": "sp.elev.dem.v1",
+      "title": "DEM 5m",
+      "description": "5 m resolution DEM for slope and drainage analysis.",
+      "cog": "https://cdn.spatial.properties/packs/wa/land-greenfield/v1/elev.dem_5m.tif",
+      "overviews": "https://cdn.spatial.properties/packs/wa/land-greenfield/v1/elev.dem_5m.tif.ovr",
+      "raster_stats": {
+        "min": -5.0,
+        "max": 450.0,
+        "mean": 57.2,
+        "nodata": -9999
+      },
+      "index": {
+        "h3_res": 9
+      },
+      "stats": {
+        "updated_at": "2025-01-01T00:00:00Z"
+      },
+      "security": {
+        "classification": "public",
+        "visibility": ["demo:viewer", "demo:analyst"]
+      }
+    }
   ],
-  "provenance": {"source":"Main Roads WA","license":"CC-BY 4.0","generated_at":"2025-11-06T00:00:00Z"},
-  "signature": null
+
+  "deltas": [],
+
+  "integrity": {
+    "manifest_sha256": "PLACEHOLDER_SHA_FOR_MANIFEST",
+    "asset_hashes": {
+      "land.tenure.pmtiles": "PLACEHOLDER_SHA_LAND_TENURE",
+      "land.title_parcels.pmtiles": "PLACEHOLDER_SHA_PARCELS",
+      "planning.scheme_zones.pmtiles": "PLACEHOLDER_SHA_ZONES",
+      "env.vegetation.pmtiles": "PLACEHOLDER_SHA_VEG",
+      "env.threatened_flora_buffered.pmtiles": "PLACEHOLDER_SHA_TFLORA",
+      "elev.dem_5m.tif": "PLACEHOLDER_SHA_DEM"
+    }
+  },
+
+  "retention": {
+    "min_ttl_days": 180
+  },
+
+  "security": {
+    "classification": "mixed",
+    "notes": "Pack contains public, internal, and restricted layers; access controlled per-layer via ABAC."
+  },
+
+  "extensions": {
+    "stac_collection": "https://api.spatial.properties/stac/collections/spatial.properties:wa:land-greenfield",
+    "csp_profile": {
+      "profile": "CSP-1",
+      "packet_scope_example": {
+        "h3": ["8a2a1072b59ffff"],
+        "s2_level": null
+      },
+      "required_layers": [
+        "land.title_parcels",
+        "land.tenure",
+        "planning.scheme_zones",
+        "env.vegetation",
+        "env.threatened_flora_buffered"
+      ]
+    }
+  }
 }
+
 
 ## Data Contracts
 - Artifacts MUST be byte-addressable and immutable by version.
