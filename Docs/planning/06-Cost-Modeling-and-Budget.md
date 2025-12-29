@@ -724,6 +724,139 @@ total_monthly_cost = compute_cost + storage_cost + cdn_cost + ...
 
 ---
 
+## 12. Feature-Specific Cost Estimates
+
+### 12.1 Schema Registry & Validation (E2c)
+
+The schema registry uses static hosting (minimal infrastructure) with validation running as part of existing pack build pipeline.
+
+#### Infrastructure Costs
+
+| Component | Specification | Unit Cost | Quantity | Monthly Cost |
+|-----------|--------------|-----------|----------|--------------|
+| **Schema Hosting (S3)** | Static JSON/YAML schemas | $0.023/GB | 1GB | $0.02 |
+| **CloudFront for Schemas** | CDN for schema resolution | $0.085/GB | 10GB egress | $0.85 |
+| **Validator Container** | Part of existing EKS | Shared | - | $0 (included) |
+| **Conformance Reports (S3)** | JSON reports per pack | $0.023/GB | 5GB | $0.12 |
+| **Schema Registry UI** | Part of Pack Explorer | Shared | - | $0 (included) |
+| | | | **Subtotal** | **~$1/month** |
+
+#### Development Investment (One-Time)
+
+| Item | Effort | Notes |
+|------|--------|-------|
+| Schema JSON Schema definitions | 2-3 days | Base schemas for roads, parcels |
+| Validator CLI | 3-5 days | TypeScript + Python packages |
+| CI/CD integration | 1-2 days | GitHub Actions workflow |
+| Conformance report generator | 2-3 days | JSON output format |
+| Schema browser UI | 3-5 days | Part of Pack Explorer |
+| **Total** | **11-18 days** | ~2-3 weeks engineering |
+
+**Marginal Cost:** Effectively **$0** additional infrastructure (uses existing S3/CDN).
+
+---
+
+### 12.2 Trust & Policy Artifacts (E2d)
+
+Trust artifacts add signing infrastructure and machine-readable contracts.
+
+#### Infrastructure Costs
+
+| Component | Specification | Unit Cost | Quantity | Monthly Cost |
+|-----------|--------------|-----------|----------|--------------|
+| **KMS Signing Key** | Manifest signing | $1/key/month | 2 keys | $2 |
+| **KMS Sign/Verify** | Per-pack operations | $0.03/10K | 50K requests | $0.15 |
+| **integrity.json Storage** | Per-pack receipts | $0.023/GB | 1GB | $0.02 |
+| **contract.json Storage** | License contracts | $0.023/GB | 0.5GB | $0.01 |
+| **policy.json Storage** | Access policies | $0.023/GB | 0.5GB | $0.01 |
+| **UDG-lite Graph (Phase 2)** | RDS for lineage | See existing RDS | Shared | $0 (included) |
+| | | | **Subtotal** | **~$2.20/month** |
+
+#### Development Investment (One-Time)
+
+| Item | Effort | Notes |
+|------|--------|-------|
+| integrity.json schema + generator | 2-3 days | BLAKE3/SHA256 hashing |
+| Manifest signing workflow | 3-4 days | KMS integration |
+| Verification CLI | 2-3 days | Offline-capable |
+| contract.json schema | 2-3 days | License, attribution, constraints |
+| policy.json schema | 2-3 days | Classification, access rules |
+| Trace envelope in events | 2-3 days | NATS event extension |
+| UDG-lite graph API (Phase 2) | 5-8 days | Query endpoints |
+| Pack Explorer trust UI (Phase 2) | 3-5 days | Trust summary display |
+| **Total** | **21-32 days** | ~4-6 weeks engineering |
+
+**Marginal Cost:** **~$2-3/month** additional (primarily KMS).
+
+---
+
+### 12.3 WA Solar Feasibility Pack (E17)
+
+Hero pack demonstrating full pack-first workflow.
+
+#### Pack Build Costs (One-Time)
+
+| Item | Data Source | Processing | Estimated Cost |
+|------|-------------|-----------|----------------|
+| **Solar Exposure COG** | BOM/NASA POWER | GDAL reproject/optimize | $10-20 compute |
+| **DEM COG** | National DEM/SRTM | GDAL optimize | $15-30 compute |
+| **Slope/Aspect COGs** | Derived from DEM | GDAL terrain | $10-20 compute |
+| **Bushfire PMTiles** | WA Open Data | tippecanoe | $5-10 compute |
+| **Soils GeoParquet** | ASRIS | rio-tiler | $10-15 compute |
+| **Roads PMTiles** | OSM | tippecanoe | $10-20 compute |
+| **Manifest + Validation** | Generated | Pack Service | $1-2 compute |
+| **Total Build** | | | **$60-120** |
+
+#### Pack Storage & Delivery Costs (Monthly)
+
+| Component | Size Estimate | Unit Cost | Monthly Cost |
+|-----------|--------------|-----------|--------------|
+| **S3 Storage** | 500MB (v0.1 pack) | $0.023/GB | $0.01 |
+| **CDN Egress** | 50GB (pilot usage) | $0.085/GB | $4.25 |
+| **S3 Requests** | 10K GET requests | $0.0004/1K | $0.004 |
+| | | **Subtotal** | **~$4.30/month** |
+
+#### Development Investment (One-Time)
+
+| Item | Effort | Notes |
+|------|--------|-------|
+| Data source acquisition | 2-3 days | Download, license verification |
+| Layer processing scripts | 3-5 days | GDAL/tippecanoe workflows |
+| Manifest authoring | 1-2 days | spatialpack.json + artifacts |
+| Demo app integration | 2-3 days | MapLibre layer loading |
+| Screening workflow | 3-5 days | Score calculation + report |
+| Documentation | 1-2 days | User guide, disclaimers |
+| **Total** | **12-20 days** | ~2-4 weeks engineering |
+
+#### Licensing Considerations
+
+| Layer | License | Cost |
+|-------|---------|------|
+| Solar (BOM/NASA) | Open | $0 |
+| DEM (SRTM/National) | Open | $0 |
+| Slope/Aspect | Derived | $0 |
+| Bushfire (WA) | Open | $0 |
+| Soils (ASRIS) | Open | $0 |
+| Roads (OSM) | ODbL | $0 |
+| **v0 Total** | | **$0** |
+
+**Note:** v1 add-ons (cadastre, zoning, commercial irradiance) will require licensing agreements—costs TBD.
+
+---
+
+### 12.4 Combined Feature Costs Summary
+
+| Feature | Infrastructure (Monthly) | Development (One-Time) |
+|---------|-------------------------|------------------------|
+| E2c: Schema Registry | ~$1 | 2-3 weeks |
+| E2d: Trust Artifacts | ~$2-3 | 4-6 weeks |
+| E17: Solar Pack | ~$4-5 | 2-4 weeks |
+| **Total** | **~$7-9/month** | **8-13 weeks** |
+
+**Conclusion:** These features add negligible infrastructure cost (~$10/month combined) while providing significant product differentiation. The primary investment is engineering effort.
+
+---
+
 ## Methodology & Reconciliation Note
 
 

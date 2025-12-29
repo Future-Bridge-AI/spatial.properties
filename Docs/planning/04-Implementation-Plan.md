@@ -86,6 +86,23 @@
 #### E16 — Production Readiness (Weeks 24–26) 🔴 CRITICAL
 **Scope:** Runbooks v1; incident sims; cost guardrails → M2 delivery
 
+### E2c — Schema Registry & Validation (Weeks 3–8) 🔴 CRITICAL
+**Scope:** Schema registry (static hosting), extensions framework, validator CLI, conformance reports.
+**Deliverables:** `schema_uri` + `extensions[]` + `validation` in spatialpack.json; 2 base schemas; validator CLI; conformance report format.
+**Acceptance:** Every published vector layer includes resolvable `schema_uri`; validator returns non-zero on errors.
+**Reference:** `spec/features/0002-schema-registry-validation.md`, `Docs/architecture/03-Schema-Registry-and-Validation.md`
+
+### E2d — Trust & Policy Artifacts (Weeks 4–10) 🔴 CRITICAL
+**Scope:** Signed manifests, integrity receipts, machine-readable contracts (contract.json, policy.json), operation trace envelopes.
+**Deliverables:** `integrity.json`; `spatialpack.json.sig`; `contract.json` + `policy.json` schemas; trace envelope in NATS events.
+**Acceptance:** Every published pack has verifiable signature + integrity hashes; contract/policy artifacts referenced in manifest.
+**Reference:** `spec/features/0003-trust-and-policy-artifacts.md`, `Docs/architecture/04-Trust-and-Compatibility-Strategy.md`
+
+### E17 — WA Solar Feasibility Pack (Weeks 8–14) 🟡 HIGH
+**Scope:** Hero pack for solar site screening; 6+ layers (solar, terrain, slope, aspect, bushfire, roads); licensing matrix; screening workflow.
+**Deliverables:** `wa-solar-feasibility-pack` v0.1; manifest; COGs + GeoParquet + PMTiles; screening workflow.
+**Acceptance:** Pack validates; loads in demo app; screening workflow runs end-to-end.
+**Reference:** `spec/features/0004-wa-solar-feasibility-pack.md`, `Docs/planning/07-Solar-Pack-Example-and-Licensing.md`
 
 ---
 

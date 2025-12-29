@@ -189,6 +189,34 @@ Connectors for Overture/OSM, cadastral/roads, traffic, weather, UTM airspace, co
 
 Schema registry: versioned contracts for each layer.
 
+5.1.1 Schema Registry Architecture
+
+The schema registry provides canonical, versioned schemas for every layer type:
+
+URI Convention: `https://schemas.spatial.properties/v1/{namespace}/{name}@{version}`
+
+Examples:
+- `schemas.spatial.properties/v1/base/transport/roads@12.1.0`
+- `schemas.spatial.properties/v1/base/land/parcels@3.2.0`
+
+Schema Artifacts include:
+- JSON Schema for validation
+- Encoding profiles (geoparquet@1, mvt@1, geojson@1)
+- Conformance rules (required properties, geometry constraints, value ranges)
+- Documentation + examples
+
+Extensions Framework:
+- Composable add-ons via `extensions[]` array in layer entries
+- Third-party extensions use vendor prefix: `wa:planning-constraints@0.1.0`
+- Maturity levels: `experimental` → `candidate` → `stable` → `deprecated`
+
+Validation Service:
+- CLI: `spatialpack validate --pack spatialpack.json`
+- CI integration: GitHub Actions, GitLab CI templates
+- Conformance reports: JSON output with validator version, rule-set hash, pass/fail, error/warn counts
+
+See `Docs/architecture/03-Schema-Registry-and-Validation.md` for full specification.
+
 5.2 Normalize
 
 CRS normalization (EPSG:4326 + local projected where needed).
@@ -216,6 +244,41 @@ PII guardrails: no raw CCTV or device IDs; only derived, non-identifying hazards
 Provenance chain: every rule/event has evidence link (URL, hash, or notarized statement).
 
 Offline revocation: tiny CRL packs; agents prefer newest CRL seen from any source.
+
+6.1 Trust Artifacts (Two-Track Strategy)
+
+Track A — Ship Now (always valuable):
+
+A1: Signed Manifests + Integrity Receipts
+- `integrity.json`: Per-asset BLAKE3/SHA256 hashes
+- `spatialpack.json.sig`: COSE/Ed25519 manifest signature
+- Verification CLI: `spatialpack verify --pack <uri>`
+- Works offline with cached CRL
+
+A2: Machine-Readable Contracts
+- `contract.json`: License, attribution, redistribution, derivatives, constraints
+- `policy.json`: Classification, access constraints, visibility rules
+- Manifest references via `contract_ref` and `policy_ref` fields
+
+A3: UDG-lite Lineage Graph (Phase 2)
+- Graph materialization from STAC + manifests + provenance
+- API: `GET /v1/graph/pack/{pack_id}`, `POST /v1/graph/query`
+- Policy-aware redaction based on tenant/role
+
+A4: Operation Trace Envelope
+- Every event includes: op_id, op_type, subjects, actor, timestamp, status, inputs, outputs, provenance, trace
+- Events: `pack.published`, `tool.completed`, `license.violation`
+
+Track B — Ship on Pull (optional, Spatial Web compatibility):
+
+B1: SWID/DID everywhere (if partner/buyer pull exists)
+B2: HSML/JSON-LD exports (if partner request)
+B3: HSTP-like operations (if ecosystem integration needed)
+B4: Public UDG (if marketplace scale reached)
+
+Activation criteria for Track B: ≥2 buyers say "Spatial Web compliance changes procurement outcome" OR strategic partner requires DID/HSML alignment.
+
+See `Docs/architecture/04-Trust-and-Compatibility-Strategy.md` for full strategy.
 
 7) Ops, SLOs, and telemetry (privacy-preserving)
 
@@ -254,6 +317,30 @@ Anchors: 1–10 MB
 Hotfeed (rolling 24h): 0.1–2 MB
 
 Agents pick subsets; safety-critical stays small.
+
+9.1 WA Solar Feasibility Pack (Hero Example)
+
+The WA Solar Feasibility Pack demonstrates pack sizing for site selection use cases:
+
+| Layer | Format | Estimated Size | License |
+|-------|--------|----------------|---------|
+| Solar exposure | COG | 50-100 MB | Open (BOM/NASA) |
+| DEM | COG | 100-200 MB | Open (National DEM) |
+| Slope | COG | 50-100 MB | Derived |
+| Aspect | COG | 50-100 MB | Derived |
+| Bushfire | GeoParquet + PMTiles | 20-50 MB | Open (WA) |
+| Soils | GeoParquet/COG | 30-80 MB | Open (ASRIS) |
+| Roads | GeoParquet + PMTiles | 50-100 MB | Open (OSM) |
+| **v0 Total** | | **350-730 MB** | |
+
+Use case: Solar developers ranking candidate land by solar resource, slope, and constraint layers.
+
+Release strategy:
+- v0.1: Open data only (6+ layers)
+- v0.2: Add flood/drainage proxy, protected areas
+- v1.0: Add-ons for cadastre (BYO-license), commercial irradiance (contract)
+
+See `Docs/planning/07-Solar-Pack-Example-and-Licensing.md` for full details.
 
 10) MVP slice (8–10 weeks)
 

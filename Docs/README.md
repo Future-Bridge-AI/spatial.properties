@@ -68,7 +68,7 @@ This documentation package now includes **three critical foundational documents*
 
 ---
 
-### [03-Operations-and-Testing.md](./03-Operations-and-Testing.md)
+### [03-Operations-and-Testing.md](./architecture/03-Operations-and-Testing.md)
 **Purpose:** SLOs, observability, DR, and testing strategies
 
 **Contents:**
@@ -84,7 +84,48 @@ This documentation package now includes **three critical foundational documents*
 
 ---
 
-### [04-Implementation-Plan.md](./04-Implementation-Plan.md)
+### [03-Schema-Registry-and-Validation.md](./architecture/03-Schema-Registry-and-Validation.md) NEW
+**Purpose:** Schema registry, extensions framework, and validation
+
+**Contents:**
+- Schema artifact structure and URI conventions
+- Extensions framework with maturity lifecycle
+- Encoding profiles (GeoParquet, MVT, GeoJSON)
+- Conformance reports and validation
+- Pack lifecycle policy (draft vs published)
+- Developer experience (CLI, CI/CD, SDK)
+
+**Audience:** Platform engineers, data engineers, publishers
+
+---
+
+### [04-Trust-and-Compatibility-Strategy.md](./architecture/04-Trust-and-Compatibility-Strategy.md) NEW
+**Purpose:** Two-track strategy for trust artifacts and Spatial Web compatibility
+
+**Contents:**
+- Track A (Ship Now): Signed manifests, integrity receipts, contracts, lineage
+- Track B (Ship on Pull): Spatial Web compatibility (DID, HSML, HSTP)
+- Activation criteria for Track B
+- Implementation roadmap and success measures
+
+**Audience:** Architects, platform engineers, security team
+
+---
+
+### [02-Schema-and-Validation-Roadmap.md](./planning/02-Schema-and-Validation-Roadmap.md) NEW
+**Purpose:** Phased roadmap for schema registry and validation
+
+**Contents:**
+- Phase 1: Thin-slice MVP (schema_uri, extensions[], validation)
+- Phase 2: Product-grade discovery (if pull exists)
+- Phase 3: Ecosystem scaling (with multiple publishers)
+- Success measures and risk mitigation
+
+**Audience:** Product managers, platform engineers
+
+---
+
+### [04-Implementation-Plan.md](./planning/04-Implementation-Plan.md)
 **Purpose:** Milestones, epics, work breakdown, and team structure
 
 **Contents:**
@@ -100,7 +141,20 @@ This documentation package now includes **three critical foundational documents*
 
 ---
 
-### [05-Infrastructure-Setup-Guide.md](./05-Infrastructure-Setup-Guide.md)
+### [05-Trust-and-Compatibility-Roadmap.md](./planning/05-Trust-and-Compatibility-Roadmap.md) NEW
+**Purpose:** Two-track roadmap for trust artifacts and Spatial Web compatibility
+
+**Contents:**
+- Track A timeline and deliverables (signed manifests, contracts, lineage, traces)
+- Track B activation criteria (≥2 buyers, partner pull, tender requirement)
+- Success measures (sales enablement, integration speed, compliance credibility)
+- Risk mitigation strategies
+
+**Audience:** Product managers, architects, executives
+
+---
+
+### [05-Infrastructure-Setup-Guide.md](./planning/05-Infrastructure-Setup-Guide.md)
 **Purpose:** Step-by-step SRE guide for AWS infrastructure setup
 
 **Contents:**
@@ -135,7 +189,22 @@ This documentation package now includes **three critical foundational documents*
 
 ---
 
-### [07-Network-and-Security-Architecture.md](./07-Network-and-Security-Architecture.md) ⭐ NEW
+### [07-Solar-Pack-Example-and-Licensing.md](./planning/07-Solar-Pack-Example-and-Licensing.md) NEW
+**Purpose:** WA Solar Feasibility Pack guide and licensing matrix
+
+**Contents:**
+- Pack promise (ranking, filtering, estimation, reporting)
+- Release strategy (v0.1 open, v0.2 enhanced, v1.0 add-ons)
+- Licensing matrix by category (Open, Derived, Restricted, Commercial, BYO, Link-out)
+- Layer-by-layer breakdown with licenses and cadence
+- Go/no-go checklist for publishing
+- Screening workflow and acceptance criteria
+
+**Audience:** Product managers, data engineers, publishers
+
+---
+
+### [07-Network-and-Security-Architecture.md](./architecture/07-Network-and-Security-Architecture.md) ⭐ NEW
 **Purpose:** Complete network topology and security controls
 
 **Contents:**
