@@ -185,6 +185,112 @@ All Specify scripts are in `.specify/scripts/powershell/`:
 
 Note: These scripts are called by slash commands - you rarely invoke them directly.
 
+## Demo Application Commands
+
+The implemented demo lives in `demo-offline-gis/`:
+
+### Running the Demo
+
+**Windows**:
+```powershell
+cd demo-offline-gis
+.\run.ps1
+```
+
+**Unix/macOS/Linux**:
+```bash
+cd demo-offline-gis
+./run.sh
+```
+
+Both scripts:
+1. Check Node.js/npm installation
+2. Install dependencies if needed
+3. Start http-server on port 3000
+4. Open browser automatically
+
+**Manual launch**:
+```bash
+cd demo-offline-gis
+npm install              # First time only
+npm run serve           # Auto-opens browser
+npm start               # Start without opening browser
+```
+
+### Data Management
+
+**Regenerate asset data**:
+```bash
+cd demo-offline-gis
+conda activate gis-demo  # Or create: conda env create -f environment.yml
+python scripts/load-assets.py      # CSV → DuckDB
+python scripts/export-geojson.py   # DuckDB → GeoJSON
+```
+
+**Edit sample data**: Modify `demo-offline-gis/data/assets.csv`, then regenerate
+
+## Project Architecture
+
+### Implemented Demo Stack
+
+The `demo-offline-gis/` directory contains a complete offline GIS demo:
+
+**Frontend** (Single-page application):
+- `index.html` - Complete app with inline CSS/JS (no build step)
+- MapLibre GL JS 4.7.1 (vendored in `lib/`)
+- PMTiles 3.0.7 protocol handler (vendored)
+- Displays 80 Western Australia utility assets with interactive map
+
+**Data Layer**:
+- DuckDB 0.9+ with spatial extension (`data/demo.duckdb`)
+- GeoJSON export for frontend consumption (`data/assets.geojson`)
+- CSV seed data (`data/assets.csv`) - 80 WA utility locations
+- PMTiles basemap (must be obtained separately - see `assets/README-PMTILES.md`)
+
+**Key Design Decisions**:
+1. Pre-exported GeoJSON (not FastAPI backend) for simplicity with <100 assets
+2. Vendored libraries (no CDN) to ensure offline operation
+3. Single HTML file with inline code (no build tools required)
+4. Four-level status color coding (OK/Watch/Alert/Critical)
+5. Side panel for asset details (better than popup for detailed info)
+
+**File Structure**:
+```
+demo-offline-gis/
+├── index.html              # Main SPA (complete application)
+├── run.sh / run.ps1        # Launch scripts
+├── package.json            # Node deps (http-server only)
+├── environment.yml         # Python conda environment
+├── data/
+│   ├── demo.duckdb        # Generated from CSV
+│   ├── assets.geojson     # Exported for frontend
+│   ├── assets.csv         # Editable source data
+│   └── seed.sql           # Database schema
+├── lib/                   # Vendored JS libraries (offline)
+├── assets/                # PMTiles files go here
+├── scripts/               # Data pipeline scripts
+└── api/                   # Optional FastAPI backend (Phase 6)
+```
+
+**Performance Characteristics**:
+- Startup: ~2-3s
+- Asset load: ~0.5s (80 assets, 39.8 KB GeoJSON)
+- Memory: ~150MB
+- Zero network requests after page load
+
+### Specify Workflow Artifacts
+
+Each feature creates a `specs/###-feature-name/` directory with:
+- `spec.md` - User stories, requirements (technology-agnostic)
+- `plan.md` - Architecture, tech choices, design decisions
+- `tasks.md` - Dependency-ordered implementation tasks
+- `research.md` - Technical research findings
+- `data-model.md` - Entity relationships
+- `contracts/` - API specifications, schemas
+- `checklists/` - Quality validation
+
+Example: `specs/001-offline-gis-demo/` contains the full specification and planning for the implemented demo.
+
 ## Windows Environment
 
 This is a Windows repository (PowerShell scripts, Windows paths). When running bash commands:

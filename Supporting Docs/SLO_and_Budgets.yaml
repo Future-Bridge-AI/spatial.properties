@@ -1,0 +1,72 @@
+version: "1.0"
+owner: Spatial.Properties
+last_updated: 2025-10-30
+
+lanes:
+  A:
+    name: Cache-Gated Lookups
+    purpose: Hot path for cached queries
+    slo:
+      p95_latency_ms: 150
+      p99_latency_ms: 300
+      availability: 99.95
+      first_byte_ms: 50
+    fallback: deterministic
+    ttl_days: 7-30
+  B:
+    name: Deep-Reasoning Calls
+    purpose: Cold path for AI/graph reasoning
+    slo:
+      p95_latency_ms: 3000
+      p99_latency_ms: 8000
+      availability: 99.9
+      partial_stream_ms: 300
+    retries: 1
+    fallback: deterministic_sql_or_cached
+
+budgets:
+  default_per_tenant:
+    qps_limit: 5
+    deep_call_limit_per_minute: 5
+    monthly_cost_cap_aud: 500
+    auto_degrade_threshold_aud: 450
+    degrade_modes:
+      - "restrict_to_lane_a"
+      - "lower_precision_geometry"
+      - "reduce_sample_size"
+  cost_hints:
+    low_density_dataset:
+      expected_cost_ms: 50
+      expected_cost_usd: 0.0001
+    medium_density_dataset:
+      expected_cost_ms: 150
+      expected_cost_usd: 0.0005
+    high_density_dataset:
+      expected_cost_ms: 300
+      expected_cost_usd: 0.001
+
+observability:
+  trace_tags: [lane, hit, fallback, partial]
+  metrics: [latency, error_rate, saturation, cost]
+  alert_policy:
+    burn_rate_threshold: 2.0
+    notification_channels: ["pager", "slack", "email"]
+  logging:
+    level: info
+    retention_days: 30
+
+failover:
+  stall_detection_ms: 300
+  action: emit_cached_preview
+  log: true
+
+rollout_checklist:
+  - publish_slo_status_page
+  - tag_requests_with_lane_and_budget
+  - enable_bbox_crs_validation
+  - implement_prompt_and_result_cache
+  - support_partial_streaming
+  - register_fallback_sql_geos
+  - configure_tenant_caps_and_degrades
+  - activate_slo_burn_alerts
+  - weekly_latency_cost_review

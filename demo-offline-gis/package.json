@@ -1,0 +1,16 @@
+{
+  "name": "demo-offline-gis",
+  "version": "1.0.0",
+  "description": "Offline GIS demonstration system for FBAI/VibeGIS pitches",
+  "main": "index.html",
+  "scripts": {
+    "serve": "http-server -p 3000 -o",
+    "start": "http-server -p 3000"
+  },
+  "keywords": ["gis", "offline", "demo", "pmtiles", "duckdb"],
+  "author": "FBAI/VibeGIS",
+  "license": "MIT",
+  "dependencies": {
+    "http-server": "^14.1.1"
+  }
+}

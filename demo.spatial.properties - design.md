@@ -1,9 +1,6 @@
 An **an offline demo mode**—no cloud, no creds—using **DuckDB** (local analytics DB) and **PMTiles** (single‑file map tiles). Perfect for your FBAI/VibeGIS pitches and a safe sandbox on planes or in boardrooms.
 
 
-
-
-
 ---
 
 # What this gives you
