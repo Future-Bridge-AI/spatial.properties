@@ -1,2 +1,4 @@
-# cng-stackstack.spatial.properties
+# cng-stack
+
+Speckit workflow framework for Spatial.Properties specification-first development.
 

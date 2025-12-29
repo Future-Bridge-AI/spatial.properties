@@ -120,7 +120,10 @@ The `/Docs/` folder contains product specifications:
 - p95 STAC search < 600ms
 - 99.9% availability target
 
-## Related Repositories
+## Related Directories
 
-- `spatial.properties/` - Core specification repo with ADRs and feature specs
-- `demo.spatial.properties/` - Offline GIS demo implementations
+This is a subdirectory of the `spatial.properties` monorepo:
+
+- `../` - Root with Speckit workflow, Docs/, spec/, adr/
+- `../demo/` - Offline GIS demo implementations
+- `../cng-stack/` - Speckit framework development

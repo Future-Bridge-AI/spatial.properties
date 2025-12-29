@@ -64,24 +64,20 @@ Execute these commands in order for each feature:
 
 ## Repository Structure
 
+This is a subdirectory of the `spatial.properties` monorepo. Speckit workflow infrastructure (`.specify/`, `.claude/commands/`) is at the monorepo root.
+
 ```
-demo.spatial.properties/
-├── .specify/                    # Specify workflow infrastructure
-│   ├── scripts/powershell/     # Setup and context scripts
-│   ├── templates/              # Spec, plan, tasks templates
-│   └── memory/                 # Constitution and project memory
-├── .claude/commands/           # Custom slash commands (speckit.*)
-├── specs/                      # Feature branches create subdirs here
+demo/                           # This directory (in spatial.properties/)
+├── CLAUDE.md                   # This file
+├── constitution.md             # Demo-specific operating principles
+├── demo.spatial.properties - design.md  # Initial design concept
+├── demo-offline-gis/           # Implemented demo application
+├── specs/                      # Feature specifications
 │   └── ###-feature-name/       # Each feature gets own directory
-│       ├── spec.md            # What: user stories, requirements
-│       ├── plan.md            # How: architecture, tech decisions
-│       ├── tasks.md           # Actionable implementation steps
-│       ├── research.md        # Technical research and decisions
-│       ├── data-model.md      # Entities and relationships
-│       ├── contracts/         # API specs, schemas
-│       ├── checklists/        # Quality validation checklists
-│       └── quickstart.md      # Integration scenarios
-└── demo.spatial.properties - design.md  # Initial design concept
+│       ├── spec.md             # What: user stories, requirements
+│       ├── plan.md             # How: architecture, tech decisions
+│       └── tasks.md            # Actionable implementation steps
+└── Supporting Docs/            # Reference documentation
 ```
 
 ## Important Workflow Rules
@@ -123,7 +119,7 @@ Each user story MUST be:
 
 ## Key Principles
 
-The project follows a strict constitution (`.specify/memory/constitution.md`) with these core principles:
+The project follows a strict constitution (`constitution.md` in this directory, with shared workflow in `../.specify/`) with these core principles:
 
 1. **Offline-First Operation**: Zero network dependencies during demo execution - must work in airplane mode
 2. **Production Format Parity**: Use actual production formats (DuckDB/Parquet/GeoParquet, PMTiles) - no throwaway mockups
@@ -177,13 +173,13 @@ One folder with:
 
 ## Script Paths
 
-All Specify scripts are in `.specify/scripts/powershell/`:
+Specify scripts are at the monorepo root in `../.specify/scripts/powershell/`:
 - `create-new-feature.ps1` - Branch and spec initialization
 - `setup-plan.ps1` - Planning phase setup
 - `update-agent-context.ps1` - Updates AI context files
 - `check-prerequisites.ps1` - Validates workflow prerequisites
 
-Note: These scripts are called by slash commands - you rarely invoke them directly.
+Note: These scripts are called by slash commands from the monorepo root.
 
 ## Demo Application Commands
 

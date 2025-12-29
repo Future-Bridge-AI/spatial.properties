@@ -80,6 +80,11 @@ MCP Clients (tools accept URIs; return pack layers + manifest patches)
     "id": "CDLA-Permissive-2.0",
     "attribution": "..."
   },
+
+  "contract_ref": "https://cdn.spatial.properties/packs/v12/contract.json",
+  "policy_ref": "https://cdn.spatial.properties/packs/v12/policy.json",
+  "integrity_uri": "https://cdn.spatial.properties/packs/v12/integrity.json",
+  "signature_uri": "https://cdn.spatial.properties/packs/v12/spatialpack.json.sig",
   
   "provenance": {
     "sources": [
@@ -103,6 +108,11 @@ MCP Clients (tools accept URIs; return pack layers + manifest patches)
       "id": "roads",
       "type": "vector",
       "schema": "overture.roads.core.v3",
+      "schema_uri": "https://schemas.spatial.properties/v1/base/transport/roads@12.1.0",
+      "schema_profile": "geoparquet@1",
+      "extensions": [
+        "https://schemas.spatial.properties/ext/spatial-properties:lineage@1.0.0"
+      ],
       "tilejson": "https://cdn.spatial.properties/tiles/v12/roads/tile.json",
       "pmtiles": "https://cdn.spatial.properties/packs/v12/roads.pmtiles",
       "parquet": "s3://spatial-packs/v12/roads/*.parquet",
@@ -116,6 +126,14 @@ MCP Clients (tools accept URIs; return pack layers + manifest patches)
       "security": {
         "classification": "internal",
         "visibility": ["acme:analyst"]
+      },
+      "validation": {
+        "conformance_uri": "https://schemas.spatial.properties/reports/run.../roads.json",
+        "status": "pass",
+        "validator": "spatial.properties.validator@1.3.2",
+        "rule_set_hash": "sha256:...",
+        "checked_at": "2025-10-24T12:00:00Z",
+        "summary": { "errors": 0, "warnings": 5 }
       }
     }
   ],
@@ -147,6 +165,14 @@ MCP Clients (tools accept URIs; return pack layers + manifest patches)
   }
 }
 ```
+
+### Related Architecture Documents
+
+For detailed specifications on schema validation and trust artifacts, see:
+- **[03-Schema-Registry-and-Validation.md](./03-Schema-Registry-and-Validation.md)**: Schema registry, extensions framework, validation & conformance
+- **[04-Trust-and-Compatibility-Strategy.md](./04-Trust-and-Compatibility-Strategy.md)**: Signed manifests, integrity receipts, license/policy contracts, lineage graph
+
+---
 
 ## 4.1b CSP-1: Manifest Extensions
 

@@ -89,6 +89,70 @@ POST   /v1/packs/search             # Catalog search
 
 ---
 
+### 5.4a Schema Artifact Hosting
+
+> See [03-Schema-Registry-and-Validation.md](./03-Schema-Registry-and-Validation.md) for full specification.
+
+**Responsibilities:**
+- Host and serve schema/extension artifacts via stable, immutable URIs
+- Publish version metadata and compatibility policy
+
+**OpenAPI Endpoints:**
+```
+GET  /schemas/{namespace}/{name}@{version}    # JSON Schema document
+GET  /extensions/{publisher}:{ext_name}@{version}  # Extension artifact
+GET  /catalog/schemas?tag=&status=            # (Optional) Discovery
+```
+
+**URI Conventions:**
+- Schemas: `https://schemas.spatial.properties/v1/{namespace}/{name}@{version}`
+- Extensions: `https://schemas.spatial.properties/ext/{publisher}:{ext_name}@{version}`
+
+---
+
+### 5.4b Validation Service
+
+> See [03-Schema-Registry-and-Validation.md](./03-Schema-Registry-and-Validation.md) for full specification.
+
+**Responsibilities:**
+- Validate datasets (GeoParquet/PMTiles) against schema + extensions
+- Generate conformance reports
+- Provide CI-friendly outputs
+
+**OpenAPI Endpoints:**
+```
+POST /validate                  # Payload: pack/layer URIs + schema/ext URIs
+GET  /reports/{run_id}          # Full conformance report
+GET  /reports/{run_id}/summary  # Summary only
+```
+
+**Conformance Report Fields:**
+- `run_id`, `validator` (name/version), `inputs`, `results`, `hashes`, `rule_set_hash`
+
+---
+
+### 5.4c UDG-lite Lineage Graph API
+
+> See [04-Trust-and-Compatibility-Strategy.md](./04-Trust-and-Compatibility-Strategy.md) for full specification.
+
+**Responsibilities:**
+- Expose traversable provenance graph: pack → version → layer → asset → source → contract/policy
+- Policy-aware redaction (tenant-scoped, respect visibility constraints)
+
+**OpenAPI Endpoints:**
+```
+GET  /v1/graph/pack/{pack_id}  # Traversal bundle
+POST /v1/graph/query           # Constrained query with depth/filter options
+```
+
+**Graph Relationships:**
+- `derived_from` — provenance sources
+- `licensed_by` / `restricted_by` — contract/policy references
+- `covers_cell` — H3/S2 spatial index
+- `valid_at` — temporal versioning
+
+---
+
 ### 5.5 MCP Orchestrator & Tools
 
 #### Orchestration
@@ -168,6 +232,30 @@ edge.beacon.updated
 device.certificate.rotated
 security.replay.detected
 ```
+
+#### Operation Trace Envelope
+
+> See [04-Trust-and-Compatibility-Strategy.md](./04-Trust-and-Compatibility-Strategy.md) for full specification.
+
+All events include a standardized trace envelope for auditability and reproducibility:
+
+```json
+{
+  "op_id": "op_01ABC...",
+  "op_type": "pack.publish",
+  "subjects": ["spatial.properties:wa:land-greenfield:v1"],
+  "actor": "publisher:demo@spatial.properties",
+  "timestamp": "2025-12-30T10:00:00Z",
+  "status": "completed",
+  "inputs": { "manifest_uri": "s3://...", "artifact_uris": ["s3://..."] },
+  "outputs": { "pack_id": "...", "cdn_uri": "https://..." },
+  "provenance": { "builder": "spatialpack-cli@1.2.0", "inputs_hash": "blake3:..." },
+  "trace": { "trace_id": "abc123", "span_id": "def456" }
+}
+```
+
+**Required fields:** `op_id`, `op_type`, `subjects`, `actor`, `timestamp`, `status`
+**Optional fields:** `inputs`, `outputs`, `provenance`, `trace`
 
 ---
 

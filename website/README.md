@@ -1,4 +1,4 @@
-# website.spatial.properties
+# website
 
 Marketing and product website for [Spatial.Properties](https://spatial.properties) - a pack-first geospatial platform delivering curated spatial packs for site selection and corridor planning.
 
