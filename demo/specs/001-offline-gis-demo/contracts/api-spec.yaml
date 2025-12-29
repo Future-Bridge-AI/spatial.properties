@@ -1,0 +1,302 @@
+openapi: 3.0.3
+info:
+  title: Offline GIS Demo API
+  description: Optional FastAPI backend for querying local DuckDB asset database
+  version: 1.0.0
+  contact:
+    name: FBAI/VibeGIS
+
+servers:
+  - url: http://localhost:8000
+    description: Local development server
+
+paths:
+  /assets:
+    get:
+      summary: Get all assets
+      description: Returns all asset records with geographic coordinates and metadata
+      operationId: getAssets
+      parameters:
+        - name: status
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: [OK, Watch, Alert, Critical]
+          description: Filter assets by operational status
+        - name: type
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: [Substation, Depot, Yard, Tower, Switchyard]
+          description: Filter assets by type
+        - name: region
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Filter assets by region name
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Asset'
+              example:
+                - id: 1
+                  name: "Kwinana Depot"
+                  type: "Depot"
+                  status: "OK"
+                  lat: -32.239
+                  lon: 115.773
+                  description: "Main distribution depot"
+                  last_inspection: "2024-11-15"
+                  capacity: "50 vehicles"
+                  region: "South Metropolitan"
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /assets/{id}:
+    get:
+      summary: Get single asset by ID
+      description: Returns detailed information for a specific asset
+      operationId: getAssetById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Asset unique identifier
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Asset'
+        '404':
+          description: Asset not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /assets/geojson:
+    get:
+      summary: Get assets as GeoJSON
+      description: Returns all assets in GeoJSON FeatureCollection format for MapLibre GL
+      operationId: getAssetsGeoJSON
+      parameters:
+        - name: status
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: [OK, Watch, Alert, Critical]
+        - name: type
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: [Substation, Depot, Yard, Tower, Switchyard]
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/geo+json:
+              schema:
+                $ref: '#/components/schemas/GeoJSONFeatureCollection'
+              example:
+                type: "FeatureCollection"
+                features:
+                  - type: "Feature"
+                    id: 1
+                    geometry:
+                      type: "Point"
+                      coordinates: [115.773, -32.239]
+                    properties:
+                      id: 1
+                      name: "Kwinana Depot"
+                      type: "Depot"
+                      status: "OK"
+                      description: "Main distribution depot"
+                      last_inspection: "2024-11-15"
+                      capacity: "50 vehicles"
+                      region: "South Metropolitan"
+
+  /health:
+    get:
+      summary: Health check
+      description: Verify API and database connectivity
+      operationId: healthCheck
+      responses:
+        '200':
+          description: Service healthy
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: "healthy"
+                  database:
+                    type: string
+                    example: "connected"
+                  asset_count:
+                    type: integer
+                    example: 127
+
+components:
+  schemas:
+    Asset:
+      type: object
+      required:
+        - id
+        - name
+        - type
+        - status
+        - lat
+        - lon
+      properties:
+        id:
+          type: integer
+          description: Unique asset identifier
+          example: 1
+        name:
+          type: string
+          maxLength: 255
+          description: Human-readable asset name
+          example: "Kwinana Depot"
+        type:
+          type: string
+          enum: [Substation, Depot, Yard, Tower, Switchyard]
+          description: Asset classification
+          example: "Depot"
+        status:
+          type: string
+          enum: [OK, Watch, Alert, Critical]
+          description: Operational status
+          example: "OK"
+        lat:
+          type: number
+          format: double
+          minimum: -90
+          maximum: 90
+          description: Latitude (WGS84)
+          example: -32.239
+        lon:
+          type: number
+          format: double
+          minimum: -180
+          maximum: 180
+          description: Longitude (WGS84)
+          example: 115.773
+        description:
+          type: string
+          nullable: true
+          description: Additional asset details
+          example: "Main distribution depot for southern metro area"
+        last_inspection:
+          type: string
+          format: date
+          nullable: true
+          description: Date of last inspection
+          example: "2024-11-15"
+        capacity:
+          type: string
+          maxLength: 50
+          nullable: true
+          description: Asset capacity or rating
+          example: "50 vehicles"
+        region:
+          type: string
+          maxLength: 100
+          nullable: true
+          description: Geographic region or district
+          example: "South Metropolitan"
+
+    GeoJSONFeatureCollection:
+      type: object
+      required:
+        - type
+        - features
+      properties:
+        type:
+          type: string
+          enum: [FeatureCollection]
+        features:
+          type: array
+          items:
+            $ref: '#/components/schemas/GeoJSONFeature'
+
+    GeoJSONFeature:
+      type: object
+      required:
+        - type
+        - id
+        - geometry
+        - properties
+      properties:
+        type:
+          type: string
+          enum: [Feature]
+        id:
+          type: integer
+        geometry:
+          $ref: '#/components/schemas/GeoJSONPoint'
+        properties:
+          type: object
+          description: Asset attributes (same as Asset schema minus lat/lon)
+
+    GeoJSONPoint:
+      type: object
+      required:
+        - type
+        - coordinates
+      properties:
+        type:
+          type: string
+          enum: [Point]
+        coordinates:
+          type: array
+          items:
+            type: number
+          minItems: 2
+          maxItems: 2
+          description: "[longitude, latitude] in WGS84"
+          example: [115.773, -32.239]
+
+    Error:
+      type: object
+      required:
+        - error
+        - message
+      properties:
+        error:
+          type: string
+          description: Error type
+          example: "NotFound"
+        message:
+          type: string
+          description: Human-readable error message
+          example: "Asset with ID 999 not found"
+        detail:
+          type: string
+          description: Additional error details
+          example: "No record exists in database with id=999"

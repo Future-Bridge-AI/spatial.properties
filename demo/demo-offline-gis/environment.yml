@@ -1,0 +1,14 @@
+name: gis-demo
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.11
+  - duckdb=0.9
+  - fastapi=0.104
+  - uvicorn=0.24
+  - pandas
+  - pyarrow
+  - pip
+  - pip:
+    - duckdb-engine

@@ -1,0 +1,1685 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "id": 1,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          115.773,
+          -32.239
+        ]
+      },
+      "properties": {
+        "id": 1,
+        "name": "Kwinana Depot",
+        "type": "Depot",
+        "status": "OK",
+        "description": "Main distribution depot for southern metro area",
+        "last_inspection": "2024-11-15 00:00:00",
+        "capacity": "50 vehicles",
+        "region": "South Metropolitan"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 2,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.891,
+          -33.859
+        ]
+      },
+      "properties": {
+        "id": 2,
+        "name": "Esperance Substation",
+        "type": "Substation",
+        "status": "Watch",
+        "description": "Coastal transmission substation",
+        "last_inspection": "2024-10-20 00:00:00",
+        "capacity": "500kV",
+        "region": "Goldfields-Esperance"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 3,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          122.237,
+          -17.961
+        ]
+      },
+      "properties": {
+        "id": 3,
+        "name": "Broome Yard",
+        "type": "Yard",
+        "status": "Alert",
+        "description": "Remote storage facility for northern operations",
+        "last_inspection": "2024-09-05 00:00:00",
+        "capacity": "100 poles",
+        "region": "Kimberley"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 4,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          115.857,
+          -31.952
+        ]
+      },
+      "properties": {
+        "id": 4,
+        "name": "Perth Central Substation",
+        "type": "Substation",
+        "status": "OK",
+        "description": "Primary transmission hub for Perth CBD",
+        "last_inspection": "2024-11-20 00:00:00",
+        "capacity": "750kV",
+        "region": "Central Metropolitan"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 5,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          115.747,
+          -32.054
+        ]
+      },
+      "properties": {
+        "id": 5,
+        "name": "Fremantle Depot",
+        "type": "Depot",
+        "status": "OK",
+        "description": "Coastal operations and maintenance depot",
+        "last_inspection": "2024-11-10 00:00:00",
+        "capacity": "35 vehicles",
+        "region": "South Metropolitan"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 6,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          114.614,
+          -28.777
+        ]
+      },
+      "properties": {
+        "id": 6,
+        "name": "Geraldton Substation",
+        "type": "Substation",
+        "status": "OK",
+        "description": "Mid-west regional transmission hub",
+        "last_inspection": "2024-10-25 00:00:00",
+        "capacity": "330kV",
+        "region": "Mid West"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 7,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          115.639,
+          -33.327
+        ]
+      },
+      "properties": {
+        "id": 7,
+        "name": "Bunbury Switchyard",
+        "type": "Switchyard",
+        "status": "Watch",
+        "description": "Major switching facility for southern region",
+        "last_inspection": "2024-10-15 00:00:00",
+        "capacity": "500kV",
+        "region": "South West"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 8,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.472,
+          -30.749
+        ]
+      },
+      "properties": {
+        "id": 8,
+        "name": "Kalgoorlie Substation",
+        "type": "Substation",
+        "status": "Alert",
+        "description": "Remote goldfields transmission facility",
+        "last_inspection": "2024-09-28 00:00:00",
+        "capacity": "330kV",
+        "region": "Goldfields-Esperance"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 9,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          117.884,
+          -35.027
+        ]
+      },
+      "properties": {
+        "id": 9,
+        "name": "Albany Depot",
+        "type": "Depot",
+        "status": "OK",
+        "description": "Southern coastal maintenance depot",
+        "last_inspection": "2024-11-12 00:00:00",
+        "capacity": "25 vehicles",
+        "region": "Great Southern"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 10,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          116.154,
+          -33.361
+        ]
+      },
+      "properties": {
+        "id": 10,
+        "name": "Collie Tower",
+        "type": "Tower",
+        "status": "OK",
+        "description": "Regional transmission tower near power station",
+        "last_inspection": "2024-11-05 00:00:00",
+        "capacity": "330kV",
+        "region": "South West"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 11,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          115.721,
+          -32.527
+        ]
+      },
+      "properties": {
+        "id": 11,
+        "name": "Mandurah Substation",
+        "type": "Substation",
+        "status": "OK",
+        "description": "Peel region transmission facility",
+        "last_inspection": "2024-11-18 00:00:00",
+        "capacity": "330kV",
+        "region": "Peel"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 12,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          116.668,
+          -31.651
+        ]
+      },
+      "properties": {
+        "id": 12,
+        "name": "Northam Yard",
+        "type": "Yard",
+        "status": "Watch",
+        "description": "Wheatbelt storage and staging yard",
+        "last_inspection": "2024-10-08 00:00:00",
+        "capacity": "75 poles",
+        "region": "Wheatbelt"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 13,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          118.606,
+          -20.311
+        ]
+      },
+      "properties": {
+        "id": 13,
+        "name": "Port Hedland Substation",
+        "type": "Substation",
+        "status": "Critical",
+        "description": "Pilbara port industrial transmission",
+        "last_inspection": "2024-08-15 00:00:00",
+        "capacity": "330kV",
+        "region": "Pilbara"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 14,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          116.847,
+          -20.738
+        ]
+      },
+      "properties": {
+        "id": 14,
+        "name": "Karratha Depot",
+        "type": "Depot",
+        "status": "Watch",
+        "description": "Northwest regional operations depot",
+        "last_inspection": "2024-10-12 00:00:00",
+        "capacity": "30 vehicles",
+        "region": "Pilbara"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 15,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          115.859,
+          -31.835
+        ]
+      },
+      "properties": {
+        "id": 15,
+        "name": "Perth Northern Substation",
+        "type": "Substation",
+        "status": "OK",
+        "description": "Northern suburbs transmission hub",
+        "last_inspection": "2024-11-22 00:00:00",
+        "capacity": "500kV",
+        "region": "North Metropolitan"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 16,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          115.766,
+          -31.745
+        ]
+      },
+      "properties": {
+        "id": 16,
+        "name": "Joondalup Depot",
+        "type": "Depot",
+        "status": "OK",
+        "description": "Northern suburbs maintenance depot",
+        "last_inspection": "2024-11-08 00:00:00",
+        "capacity": "40 vehicles",
+        "region": "North Metropolitan"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 17,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          115.731,
+          -32.277
+        ]
+      },
+      "properties": {
+        "id": 17,
+        "name": "Rockingham Substation",
+        "type": "Substation",
+        "status": "OK",
+        "description": "Southern coastal transmission facility",
+        "last_inspection": "2024-11-14 00:00:00",
+        "capacity": "330kV",
+        "region": "South Metropolitan"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 18,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          115.343,
+          -33.651
+        ]
+      },
+      "properties": {
+        "id": 18,
+        "name": "Busselton Yard",
+        "type": "Yard",
+        "status": "OK",
+        "description": "Southwest coastal storage yard",
+        "last_inspection": "2024-10-30 00:00:00",
+        "capacity": "50 poles",
+        "region": "South West"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 19,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          115.076,
+          -33.952
+        ]
+      },
+      "properties": {
+        "id": 19,
+        "name": "Margaret River Tower",
+        "type": "Tower",
+        "status": "OK",
+        "description": "Regional tower for wine region coverage",
+        "last_inspection": "2024-11-03 00:00:00",
+        "capacity": "132kV",
+        "region": "South West"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 20,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          116.165,
+          -31.903
+        ]
+      },
+      "properties": {
+        "id": 20,
+        "name": "Mundaring Substation",
+        "type": "Substation",
+        "status": "OK",
+        "description": "Perth hills transmission facility",
+        "last_inspection": "2024-11-16 00:00:00",
+        "capacity": "132kV",
+        "region": "Perth Hills"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 21,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          115.973,
+          -31.785
+        ]
+      },
+      "properties": {
+        "id": 21,
+        "name": "Ellenbrook Depot",
+        "type": "Depot",
+        "status": "Watch",
+        "description": "Northeast suburbs maintenance depot",
+        "last_inspection": "2024-10-18 00:00:00",
+        "capacity": "28 vehicles",
+        "region": "North Metropolitan"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 22,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          119.735,
+          -23.36
+        ]
+      },
+      "properties": {
+        "id": 22,
+        "name": "Newman Substation",
+        "type": "Substation",
+        "status": "Alert",
+        "description": "Remote Pilbara mining region facility",
+        "last_inspection": "2024-09-20 00:00:00",
+        "capacity": "220kV",
+        "region": "Pilbara"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 23,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          117.793,
+          -22.694
+        ]
+      },
+      "properties": {
+        "id": 23,
+        "name": "Tom Price Tower",
+        "type": "Tower",
+        "status": "Watch",
+        "description": "Mining region transmission tower",
+        "last_inspection": "2024-10-05 00:00:00",
+        "capacity": "220kV",
+        "region": "Pilbara"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 24,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          113.658,
+          -24.88
+        ]
+      },
+      "properties": {
+        "id": 24,
+        "name": "Carnarvon Substation",
+        "type": "Substation",
+        "status": "OK",
+        "description": "Gascoyne region transmission facility",
+        "last_inspection": "2024-11-01 00:00:00",
+        "capacity": "132kV",
+        "region": "Gascoyne"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 25,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          114.927,
+          -29.255
+        ]
+      },
+      "properties": {
+        "id": 25,
+        "name": "Dongara Switchyard",
+        "type": "Switchyard",
+        "status": "OK",
+        "description": "Mid-west coastal switching facility",
+        "last_inspection": "2024-10-28 00:00:00",
+        "capacity": "132kV",
+        "region": "Mid West"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 26,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          115.762,
+          -29.531
+        ]
+      },
+      "properties": {
+        "id": 26,
+        "name": "Three Springs Yard",
+        "type": "Yard",
+        "status": "OK",
+        "description": "Agricultural region storage yard",
+        "last_inspection": "2024-10-22 00:00:00",
+        "capacity": "40 poles",
+        "region": "Mid West"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 27,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          116.01,
+          -30.641
+        ]
+      },
+      "properties": {
+        "id": 27,
+        "name": "Moora Depot",
+        "type": "Depot",
+        "status": "OK",
+        "description": "Wheatbelt regional depot",
+        "last_inspection": "2024-11-06 00:00:00",
+        "capacity": "20 vehicles",
+        "region": "Wheatbelt"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 28,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          116.767,
+          -31.888
+        ]
+      },
+      "properties": {
+        "id": 28,
+        "name": "York Tower",
+        "type": "Tower",
+        "status": "OK",
+        "description": "Historic town transmission tower",
+        "last_inspection": "2024-11-11 00:00:00",
+        "capacity": "66kV",
+        "region": "Wheatbelt"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 29,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          118.277,
+          -31.482
+        ]
+      },
+      "properties": {
+        "id": 29,
+        "name": "Merredin Substation",
+        "type": "Substation",
+        "status": "Watch",
+        "description": "Eastern wheatbelt transmission hub",
+        "last_inspection": "2024-10-10 00:00:00",
+        "capacity": "132kV",
+        "region": "Wheatbelt"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 30,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          117.554,
+          -33.69
+        ]
+      },
+      "properties": {
+        "id": 30,
+        "name": "Katanning Depot",
+        "type": "Depot",
+        "status": "OK",
+        "description": "Great southern agricultural depot",
+        "last_inspection": "2024-10-26 00:00:00",
+        "capacity": "18 vehicles",
+        "region": "Great Southern"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 31,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          117.176,
+          -32.934
+        ]
+      },
+      "properties": {
+        "id": 31,
+        "name": "Narrogin Substation",
+        "type": "Substation",
+        "status": "OK",
+        "description": "Central great southern transmission",
+        "last_inspection": "2024-11-09 00:00:00",
+        "capacity": "132kV",
+        "region": "Great Southern"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 32,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          117.356,
+          -34.961
+        ]
+      },
+      "properties": {
+        "id": 32,
+        "name": "Denmark Tower",
+        "type": "Tower",
+        "status": "OK",
+        "description": "Southern coastal tower facility",
+        "last_inspection": "2024-10-31 00:00:00",
+        "capacity": "66kV",
+        "region": "Great Southern"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 33,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          116.135,
+          -33.959
+        ]
+      },
+      "properties": {
+        "id": 33,
+        "name": "Bridgetown Yard",
+        "type": "Yard",
+        "status": "OK",
+        "description": "Southwest forest region yard",
+        "last_inspection": "2024-10-24 00:00:00",
+        "capacity": "30 poles",
+        "region": "South West"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 34,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          116.146,
+          -34.241
+        ]
+      },
+      "properties": {
+        "id": 34,
+        "name": "Manjimup Depot",
+        "type": "Depot",
+        "status": "OK",
+        "description": "Forest region operations depot",
+        "last_inspection": "2024-11-04 00:00:00",
+        "capacity": "22 vehicles",
+        "region": "South West"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 35,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          116.733,
+          -34.978
+        ]
+      },
+      "properties": {
+        "id": 35,
+        "name": "Walpole Tower",
+        "type": "Tower",
+        "status": "OK",
+        "description": "Coastal forest transmission tower",
+        "last_inspection": "2024-10-29 00:00:00",
+        "capacity": "66kV",
+        "region": "Great Southern"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 36,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          114.125,
+          -21.933
+        ]
+      },
+      "properties": {
+        "id": 36,
+        "name": "Exmouth Substation",
+        "type": "Substation",
+        "status": "OK",
+        "description": "Northwest cape transmission facility",
+        "last_inspection": "2024-10-19 00:00:00",
+        "capacity": "66kV",
+        "region": "Gascoyne"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 37,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          123.638,
+          -17.312
+        ]
+      },
+      "properties": {
+        "id": 37,
+        "name": "Derby Depot",
+        "type": "Depot",
+        "status": "Watch",
+        "description": "Kimberley northwest depot",
+        "last_inspection": "2024-10-07 00:00:00",
+        "capacity": "15 vehicles",
+        "region": "Kimberley"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 38,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          125.568,
+          -18.198
+        ]
+      },
+      "properties": {
+        "id": 38,
+        "name": "Fitzroy Crossing Substation",
+        "type": "Substation",
+        "status": "Alert",
+        "description": "Remote Kimberley transmission",
+        "last_inspection": "2024-09-12 00:00:00",
+        "capacity": "66kV",
+        "region": "Kimberley"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 39,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          128.738,
+          -15.777
+        ]
+      },
+      "properties": {
+        "id": 39,
+        "name": "Kununurra Yard",
+        "type": "Yard",
+        "status": "Watch",
+        "description": "Far northeast border storage yard",
+        "last_inspection": "2024-10-03 00:00:00",
+        "capacity": "35 poles",
+        "region": "Kimberley"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 40,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          128.121,
+          -15.487
+        ]
+      },
+      "properties": {
+        "id": 40,
+        "name": "Wyndham Tower",
+        "type": "Tower",
+        "status": "OK",
+        "description": "Remote northern port tower",
+        "last_inspection": "2024-10-16 00:00:00",
+        "capacity": "66kV",
+        "region": "Kimberley"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 41,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          127.764,
+          -18.228
+        ]
+      },
+      "properties": {
+        "id": 41,
+        "name": "Halls Creek Depot",
+        "type": "Depot",
+        "status": "OK",
+        "description": "Remote inland Kimberley depot",
+        "last_inspection": "2024-10-11 00:00:00",
+        "capacity": "12 vehicles",
+        "region": "Kimberley"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 42,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.33,
+          -28.883
+        ]
+      },
+      "properties": {
+        "id": 42,
+        "name": "Leonora Substation",
+        "type": "Substation",
+        "status": "OK",
+        "description": "Remote goldfields north transmission",
+        "last_inspection": "2024-10-27 00:00:00",
+        "capacity": "66kV",
+        "region": "Goldfields-Esperance"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 43,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          122.401,
+          -28.629
+        ]
+      },
+      "properties": {
+        "id": 43,
+        "name": "Laverton Yard",
+        "type": "Yard",
+        "status": "OK",
+        "description": "Far east goldfields storage yard",
+        "last_inspection": "2024-10-21 00:00:00",
+        "capacity": "25 poles",
+        "region": "Goldfields-Esperance"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 44,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.164,
+          -30.956
+        ]
+      },
+      "properties": {
+        "id": 44,
+        "name": "Coolgardie Tower",
+        "type": "Tower",
+        "status": "OK",
+        "description": "Historic goldfields tower",
+        "last_inspection": "2024-11-07 00:00:00",
+        "capacity": "66kV",
+        "region": "Goldfields-Esperance"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 45,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.668,
+          -31.194
+        ]
+      },
+      "properties": {
+        "id": 45,
+        "name": "Kambalda Substation",
+        "type": "Substation",
+        "status": "Watch",
+        "description": "Mining region transmission facility",
+        "last_inspection": "2024-10-13 00:00:00",
+        "capacity": "132kV",
+        "region": "Goldfields-Esperance"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 46,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.047,
+          -33.579
+        ]
+      },
+      "properties": {
+        "id": 46,
+        "name": "Ravensthorpe Depot",
+        "type": "Depot",
+        "status": "OK",
+        "description": "Southeast goldfields depot",
+        "last_inspection": "2024-10-25 00:00:00",
+        "capacity": "16 vehicles",
+        "region": "Goldfields-Esperance"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 47,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          128.889,
+          -31.678
+        ]
+      },
+      "properties": {
+        "id": 47,
+        "name": "Eucla Tower",
+        "type": "Tower",
+        "status": "OK",
+        "description": "Remote eastern border tower",
+        "last_inspection": "2024-10-09 00:00:00",
+        "capacity": "66kV",
+        "region": "Goldfields-Esperance"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 48,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.778,
+          -32.198
+        ]
+      },
+      "properties": {
+        "id": 48,
+        "name": "Norseman Substation",
+        "type": "Substation",
+        "status": "OK",
+        "description": "Eastern goldfields transmission",
+        "last_inspection": "2024-11-02 00:00:00",
+        "capacity": "132kV",
+        "region": "Goldfields-Esperance"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 49,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          119.325,
+          -31.228
+        ]
+      },
+      "properties": {
+        "id": 49,
+        "name": "Southern Cross Yard",
+        "type": "Yard",
+        "status": "OK",
+        "description": "Central goldfields storage yard",
+        "last_inspection": "2024-10-23 00:00:00",
+        "capacity": "30 poles",
+        "region": "Goldfields-Esperance"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 50,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          118.862,
+          -32.447
+        ]
+      },
+      "properties": {
+        "id": 50,
+        "name": "Hyden Depot",
+        "type": "Depot",
+        "status": "OK",
+        "description": "Southeastern wheatbelt depot",
+        "last_inspection": "2024-10-17 00:00:00",
+        "capacity": "14 vehicles",
+        "region": "Wheatbelt"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 51,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          117.542,
+          -32.772
+        ]
+      },
+      "properties": {
+        "id": 51,
+        "name": "Wickepin Tower",
+        "type": "Tower",
+        "status": "OK",
+        "description": "Central agricultural tower",
+        "last_inspection": "2024-10-14 00:00:00",
+        "capacity": "66kV",
+        "region": "Wheatbelt"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 52,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          117.868,
+          -32.334
+        ]
+      },
+      "properties": {
+        "id": 52,
+        "name": "Corrigin Substation",
+        "type": "Substation",
+        "status": "OK",
+        "description": "Wheatbelt regional transmission",
+        "last_inspection": "2024-10-20 00:00:00",
+        "capacity": "66kV",
+        "region": "Wheatbelt"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 53,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          118.158,
+          -31.869
+        ]
+      },
+      "properties": {
+        "id": 53,
+        "name": "Bruce Rock Yard",
+        "type": "Yard",
+        "status": "OK",
+        "description": "Eastern wheatbelt storage",
+        "last_inspection": "2024-10-19 00:00:00",
+        "capacity": "28 poles",
+        "region": "Wheatbelt"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 54,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          117.721,
+          -31.624
+        ]
+      },
+      "properties": {
+        "id": 54,
+        "name": "Kellerberrin Depot",
+        "type": "Depot",
+        "status": "OK",
+        "description": "Central wheatbelt operations",
+        "last_inspection": "2024-10-26 00:00:00",
+        "capacity": "15 vehicles",
+        "region": "Wheatbelt"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 55,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          117.157,
+          -33.831
+        ]
+      },
+      "properties": {
+        "id": 55,
+        "name": "Kojonup Tower",
+        "type": "Tower",
+        "status": "OK",
+        "description": "Great southern agricultural tower",
+        "last_inspection": "2024-10-24 00:00:00",
+        "capacity": "66kV",
+        "region": "Great Southern"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 56,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          117.557,
+          -34.294
+        ]
+      },
+      "properties": {
+        "id": 56,
+        "name": "Cranbrook Substation",
+        "type": "Substation",
+        "status": "OK",
+        "description": "Southern agricultural transmission",
+        "last_inspection": "2024-10-29 00:00:00",
+        "capacity": "66kV",
+        "region": "Great Southern"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 57,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          117.665,
+          -34.63
+        ]
+      },
+      "properties": {
+        "id": 57,
+        "name": "Mount Barker Depot",
+        "type": "Depot",
+        "status": "OK",
+        "description": "Southern hills operations depot",
+        "last_inspection": "2024-11-05 00:00:00",
+        "capacity": "18 vehicles",
+        "region": "Great Southern"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 58,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          118.01,
+          -33.939
+        ]
+      },
+      "properties": {
+        "id": 58,
+        "name": "Gnowangerup Yard",
+        "type": "Yard",
+        "status": "OK",
+        "description": "Eastern great southern storage",
+        "last_inspection": "2024-10-22 00:00:00",
+        "capacity": "32 poles",
+        "region": "Great Southern"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 59,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          118.939,
+          -33.991
+        ]
+      },
+      "properties": {
+        "id": 59,
+        "name": "Jerramungup Tower",
+        "type": "Tower",
+        "status": "OK",
+        "description": "Southeast agricultural tower",
+        "last_inspection": "2024-10-18 00:00:00",
+        "capacity": "66kV",
+        "region": "Great Southern"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 60,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          118.557,
+          -34.039
+        ]
+      },
+      "properties": {
+        "id": 60,
+        "name": "Ongerup Depot",
+        "type": "Depot",
+        "status": "OK",
+        "description": "Remote southern agricultural depot",
+        "last_inspection": "2024-10-15 00:00:00",
+        "capacity": "12 vehicles",
+        "region": "Great Southern"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 61,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          116.033,
+          -34.446
+        ]
+      },
+      "properties": {
+        "id": 61,
+        "name": "Pemberton Substation",
+        "type": "Substation",
+        "status": "OK",
+        "description": "Deep southwest forest transmission",
+        "last_inspection": "2024-11-01 00:00:00",
+        "capacity": "66kV",
+        "region": "South West"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 62,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          116.126,
+          -34.629
+        ]
+      },
+      "properties": {
+        "id": 62,
+        "name": "Northcliffe Yard",
+        "type": "Yard",
+        "status": "OK",
+        "description": "Far southwest storage yard",
+        "last_inspection": "2024-10-27 00:00:00",
+        "capacity": "22 poles",
+        "region": "South West"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 63,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          115.157,
+          -34.316
+        ]
+      },
+      "properties": {
+        "id": 63,
+        "name": "Augusta Tower",
+        "type": "Tower",
+        "status": "OK",
+        "description": "Southwest cape transmission tower",
+        "last_inspection": "2024-10-31 00:00:00",
+        "capacity": "66kV",
+        "region": "South West"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 64,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          115.103,
+          -33.613
+        ]
+      },
+      "properties": {
+        "id": 64,
+        "name": "Dunsborough Depot",
+        "type": "Depot",
+        "status": "OK",
+        "description": "Southwest coastal operations depot",
+        "last_inspection": "2024-11-03 00:00:00",
+        "capacity": "16 vehicles",
+        "region": "South West"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 65,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          115.034,
+          -33.649
+        ]
+      },
+      "properties": {
+        "id": 65,
+        "name": "Yallingup Substation",
+        "type": "Substation",
+        "status": "OK",
+        "description": "Coastal tourist region transmission",
+        "last_inspection": "2024-10-28 00:00:00",
+        "capacity": "66kV",
+        "region": "South West"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 66,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          115.903,
+          -33.082
+        ]
+      },
+      "properties": {
+        "id": 66,
+        "name": "Harvey Yard",
+        "type": "Yard",
+        "status": "OK",
+        "description": "Southwestern agricultural storage",
+        "last_inspection": "2024-10-25 00:00:00",
+        "capacity": "35 poles",
+        "region": "South West"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 67,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          115.874,
+          -32.629
+        ]
+      },
+      "properties": {
+        "id": 67,
+        "name": "Pinjarra Depot",
+        "type": "Depot",
+        "status": "OK",
+        "description": "Peel region operations depot",
+        "last_inspection": "2024-11-07 00:00:00",
+        "capacity": "24 vehicles",
+        "region": "Peel"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 68,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          115.92,
+          -32.841
+        ]
+      },
+      "properties": {
+        "id": 68,
+        "name": "Waroona Tower",
+        "type": "Tower",
+        "status": "OK",
+        "description": "Rural peel transmission tower",
+        "last_inspection": "2024-10-30 00:00:00",
+        "capacity": "66kV",
+        "region": "Peel"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 69,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          116.063,
+          -32.714
+        ]
+      },
+      "properties": {
+        "id": 69,
+        "name": "Dwellingup Substation",
+        "type": "Substation",
+        "status": "OK",
+        "description": "Forest region transmission facility",
+        "last_inspection": "2024-10-26 00:00:00",
+        "capacity": "66kV",
+        "region": "Peel"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 70,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          116.472,
+          -32.797
+        ]
+      },
+      "properties": {
+        "id": 70,
+        "name": "Boddington Depot",
+        "type": "Depot",
+        "status": "Watch",
+        "description": "Mining region operations depot",
+        "last_inspection": "2024-10-12 00:00:00",
+        "capacity": "20 vehicles",
+        "region": "Peel"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 71,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          116.879,
+          -33.027
+        ]
+      },
+      "properties": {
+        "id": 71,
+        "name": "Williams Tower",
+        "type": "Tower",
+        "status": "OK",
+        "description": "Central agricultural tower",
+        "last_inspection": "2024-10-21 00:00:00",
+        "capacity": "66kV",
+        "region": "Wheatbelt"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 72,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          118.383,
+          -32.074
+        ]
+      },
+      "properties": {
+        "id": 72,
+        "name": "Narembeen Substation",
+        "type": "Substation",
+        "status": "OK",
+        "description": "Eastern wheatbelt transmission",
+        "last_inspection": "2024-10-19 00:00:00",
+        "capacity": "66kV",
+        "region": "Wheatbelt"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 73,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          118.465,
+          -33.1
+        ]
+      },
+      "properties": {
+        "id": 73,
+        "name": "Lake Grace Yard",
+        "type": "Yard",
+        "status": "OK",
+        "description": "Remote eastern agricultural storage",
+        "last_inspection": "2024-10-16 00:00:00",
+        "capacity": "26 poles",
+        "region": "Wheatbelt"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 74,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          119.018,
+          -33.095
+        ]
+      },
+      "properties": {
+        "id": 74,
+        "name": "Newdegate Depot",
+        "type": "Depot",
+        "status": "OK",
+        "description": "Far eastern wheatbelt depot",
+        "last_inspection": "2024-10-14 00:00:00",
+        "capacity": "13 vehicles",
+        "region": "Wheatbelt"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 75,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          118.881,
+          -32.516
+        ]
+      },
+      "properties": {
+        "id": 75,
+        "name": "Kondinin Tower",
+        "type": "Tower",
+        "status": "OK",
+        "description": "Eastern agricultural tower",
+        "last_inspection": "2024-10-17 00:00:00",
+        "capacity": "66kV",
+        "region": "Wheatbelt"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 76,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          118.211,
+          -30.895
+        ]
+      },
+      "properties": {
+        "id": 76,
+        "name": "Mukinbudin Substation",
+        "type": "Substation",
+        "status": "OK",
+        "description": "Northern wheatbelt transmission",
+        "last_inspection": "2024-10-22 00:00:00",
+        "capacity": "66kV",
+        "region": "Wheatbelt"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 77,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          118.253,
+          -30.47
+        ]
+      },
+      "properties": {
+        "id": 77,
+        "name": "Beacon Yard",
+        "type": "Yard",
+        "status": "OK",
+        "description": "Northern agricultural storage",
+        "last_inspection": "2024-10-20 00:00:00",
+        "capacity": "24 poles",
+        "region": "Wheatbelt"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 78,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          116.276,
+          -29.432
+        ]
+      },
+      "properties": {
+        "id": 78,
+        "name": "Perenjori Depot",
+        "type": "Depot",
+        "status": "OK",
+        "description": "Northwest wheatbelt depot",
+        "last_inspection": "2024-10-18 00:00:00",
+        "capacity": "14 vehicles",
+        "region": "Mid West"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 79,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          115.438,
+          -29.195
+        ]
+      },
+      "properties": {
+        "id": 79,
+        "name": "Mingenew Tower",
+        "type": "Tower",
+        "status": "OK",
+        "description": "Mid-west agricultural tower",
+        "last_inspection": "2024-10-24 00:00:00",
+        "capacity": "66kV",
+        "region": "Mid West"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 80,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          116.01,
+          -29.212
+        ]
+      },
+      "properties": {
+        "id": 80,
+        "name": "Morawa Substation",
+        "type": "Substation",
+        "status": "OK",
+        "description": "Mid-west rural transmission",
+        "last_inspection": "2024-10-23 00:00:00",
+        "capacity": "66kV",
+        "region": "Mid West"
+      }
+    }
+  ]
+}

@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Offline GIS Demo - FBAI/VibeGIS</title>
+
+    <!-- Vendored MapLibre GL CSS -->
+    <link href="./lib/maplibre-gl.css" rel="stylesheet" />
+
+    <!-- Vendored JavaScript Libraries -->
+    <script src="./lib/maplibre-gl.js"></script>
+    <script src="./lib/pmtiles.js"></script>
+
+    <style>
+        /* Reset and full-screen map layout */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+            width: 100%;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        }
+
+        #map {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Loading indicator */
+        #loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 30px 50px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            z-index: 1000;
+            text-align: center;
+            font-size: 18px;
+            color: #333;
+        }
+
+        #loading.hidden {
+            display: none;
+        }
+
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #3498db;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 15px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Header overlay */
+        #header {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: white;
+            padding: 12px 20px;
+            border-radius: 4px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            z-index: 100;
+        }
+
+        #header h1 {
+            font-size: 18px;
+            font-weight: 600;
+            color: #2c3e50;
+            margin: 0;
+        }
+
+        #header p {
+            font-size: 12px;
+            color: #7f8c8d;
+            margin: 4px 0 0 0;
+        }
+
+        /* Asset detail panel */
+        #detail-panel {
+            position: absolute;
+            top: 80px;
+            right: 10px;
+            width: 350px;
+            max-height: 600px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            z-index: 200;
+            overflow-y: auto;
+            display: none;
+        }
+
+        #detail-panel.visible {
+            display: block;
+        }
+
+        #detail-panel-header {
+            padding: 16px 20px;
+            border-bottom: 1px solid #e0e0e0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        #detail-panel-header h2 {
+            font-size: 18px;
+            font-weight: 600;
+            color: #2c3e50;
+            margin: 0;
+        }
+
+        #close-panel {
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: #95a5a6;
+            cursor: pointer;
+            padding: 0;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #close-panel:hover {
+            color: #2c3e50;
+        }
+
+        #detail-panel-content {
+            padding: 20px;
+        }
+
+        .detail-row {
+            margin-bottom: 16px;
+        }
+
+        .detail-label {
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: #95a5a6;
+            letter-spacing: 0.5px;
+            margin-bottom: 4px;
+        }
+
+        .detail-value {
+            font-size: 14px;
+            color: #2c3e50;
+            word-wrap: break-word;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+            color: white;
+        }
+
+        .status-ok { background-color: #10b981; }
+        .status-watch { background-color: #f59e0b; }
+        .status-alert { background-color: #ef4444; }
+        .status-critical { background-color: #7f1d1d; }
+
+        /* Legend */
+        #legend {
+            position: absolute;
+            bottom: 30px;
+            left: 10px;
+            background: white;
+            padding: 12px 16px;
+            border-radius: 4px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            z-index: 100;
+        }
+
+        #legend h3 {
+            font-size: 12px;
+            font-weight: 600;
+            color: #2c3e50;
+            margin: 0 0 8px 0;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 6px;
+            font-size: 11px;
+            color: #2c3e50;
+        }
+
+        .legend-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .legend-color {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            margin-right: 8px;
+            border: 2px solid white;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading indicator -->
+    <div id="loading">
+        <div class="spinner"></div>
+        <div>Loading map...</div>
+    </div>
+
+    <!-- Map container -->
+    <div id="map"></div>
+
+    <!-- Header -->
+    <div id="header">
+        <h1>FBAI/VibeGIS Offline Demo</h1>
+        <p>Western Australia Utility Assets</p>
+    </div>
+
+    <!-- Asset detail panel -->
+    <div id="detail-panel">
+        <div id="detail-panel-header">
+            <h2>Asset Details</h2>
+            <button id="close-panel" aria-label="Close">&times;</button>
+        </div>
+        <div id="detail-panel-content">
+            <!-- Content populated by JavaScript -->
+        </div>
+    </div>
+
+    <!-- Legend -->
+    <div id="legend">
+        <h3>Asset Status</h3>
+        <div class="legend-item">
+            <div class="legend-color" style="background-color: #10b981;"></div>
+            <span>OK</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-color" style="background-color: #f59e0b;"></div>
+            <span>Watch</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-color" style="background-color: #ef4444;"></div>
+            <span>Alert</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-color" style="background-color: #7f1d1d;"></div>
+            <span>Critical</span>
+        </div>
+    </div>
+
+    <script>
+        // Initialize PMTiles protocol
+        const protocol = new pmtiles.Protocol();
+        maplibregl.addProtocol("pmtiles", protocol.tile);
+
+        // Create map instance
+        const map = new maplibregl.Map({
+            container: 'map',
+            style: {
+                version: 8,
+                sources: {
+                    // PMTiles basemap (will show background if file exists)
+                    basemap: {
+                        type: 'vector',
+                        url: 'pmtiles://./assets/region.pmtiles',
+                        attribution: '© OpenStreetMap contributors'
+                    },
+                    // Asset data from GeoJSON
+                    assets: {
+                        type: 'geojson',
+                        data: './data/assets.geojson'
+                    }
+                },
+                layers: [
+                    // Simple background (fallback if PMTiles not loaded)
+                    {
+                        id: 'background',
+                        type: 'background',
+                        paint: {
+                            'background-color': '#f0f0f0'
+                        }
+                    },
+                    // Asset markers
+                    {
+                        id: 'assets',
+                        type: 'circle',
+                        source: 'assets',
+                        paint: {
+                            'circle-radius': 8,
+                            'circle-color': [
+                                'match',
+                                ['get', 'status'],
+                                'OK', '#10b981',
+                                'Watch', '#f59e0b',
+                                'Alert', '#ef4444',
+                                'Critical', '#7f1d1d',
+                                '#6b7280' // default gray
+                            ],
+                            'circle-stroke-width': 2,
+                            'circle-stroke-color': '#ffffff'
+                        }
+                    }
+                ]
+            },
+            center: [115.86, -31.95], // Western Australia
+            zoom: 6,
+            maxZoom: 16,
+            minZoom: 4
+        });
+
+        // Add navigation controls
+        map.addControl(new maplibregl.NavigationControl(), 'top-right');
+
+        // Hide loading indicator when map loads
+        map.on('load', () => {
+            document.getElementById('loading').classList.add('hidden');
+            console.log('Map loaded successfully');
+        });
+
+        // Change cursor to pointer when hovering over assets
+        map.on('mouseenter', 'assets', () => {
+            map.getCanvas().style.cursor = 'pointer';
+        });
+
+        map.on('mouseleave', 'assets', () => {
+            map.getCanvas().style.cursor = '';
+        });
+
+        // Handle asset clicks to show detail panel
+        map.on('click', 'assets', (e) => {
+            if (e.features.length > 0) {
+                const asset = e.features[0].properties;
+                showDetailPanel(asset);
+
+                // Fly to asset location
+                map.flyTo({
+                    center: e.lngLat,
+                    zoom: Math.max(map.getZoom(), 10),
+                    duration: 1000
+                });
+            }
+        });
+
+        // Close panel button
+        document.getElementById('close-panel').addEventListener('click', hideDetailPanel);
+
+        // Close panel on ESC key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                hideDetailPanel();
+            }
+        });
+
+        // Show detail panel with asset information
+        function showDetailPanel(asset) {
+            const panel = document.getElementById('detail-panel');
+            const content = document.getElementById('detail-panel-content');
+
+            // Build status badge
+            const statusClass = `status-${asset.status.toLowerCase()}`;
+            const statusBadge = `<span class="status-badge ${statusClass}">${asset.status}</span>`;
+
+            // Build HTML content
+            let html = `
+                <div class="detail-row">
+                    <div class="detail-label">Name</div>
+                    <div class="detail-value"><strong>${asset.name}</strong></div>
+                </div>
+                <div class="detail-row">
+                    <div class="detail-label">Type</div>
+                    <div class="detail-value">${asset.type}</div>
+                </div>
+                <div class="detail-row">
+                    <div class="detail-label">Status</div>
+                    <div class="detail-value">${statusBadge}</div>
+                </div>
+                <div class="detail-row">
+                    <div class="detail-label">Location</div>
+                    <div class="detail-value">${asset.lat.toFixed(4)}, ${asset.lon.toFixed(4)}</div>
+                </div>
+            `;
+
+            // Add optional fields if present
+            if (asset.region) {
+                html += `
+                    <div class="detail-row">
+                        <div class="detail-label">Region</div>
+                        <div class="detail-value">${asset.region}</div>
+                    </div>
+                `;
+            }
+
+            if (asset.capacity) {
+                html += `
+                    <div class="detail-row">
+                        <div class="detail-label">Capacity</div>
+                        <div class="detail-value">${asset.capacity}</div>
+                    </div>
+                `;
+            }
+
+            if (asset.last_inspection) {
+                html += `
+                    <div class="detail-row">
+                        <div class="detail-label">Last Inspection</div>
+                        <div class="detail-value">${asset.last_inspection}</div>
+                    </div>
+                `;
+            }
+
+            if (asset.description) {
+                html += `
+                    <div class="detail-row">
+                        <div class="detail-label">Description</div>
+                        <div class="detail-value">${asset.description}</div>
+                    </div>
+                `;
+            }
+
+            content.innerHTML = html;
+            panel.classList.add('visible');
+        }
+
+        // Hide detail panel
+        function hideDetailPanel() {
+            const panel = document.getElementById('detail-panel');
+            panel.classList.remove('visible');
+        }
+
+        // Error handling for missing files
+        map.on('error', (e) => {
+            console.error('Map error:', e);
+            // Don't block if PMTiles is missing - assets can still display
+        });
+
+        // Log asset load success
+        map.on('sourcedata', (e) => {
+            if (e.sourceId === 'assets' && e.isSourceLoaded) {
+                console.log('Assets loaded successfully');
+            }
+        });
+    </script>
+</body>
+</html>

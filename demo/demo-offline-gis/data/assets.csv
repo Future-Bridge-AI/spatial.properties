@@ -1,0 +1,81 @@
+id,name,type,status,lat,lon,description,last_inspection,capacity,region
+1,Kwinana Depot,Depot,OK,-32.239,115.773,Main distribution depot for southern metro area,2024-11-15,50 vehicles,South Metropolitan
+2,Esperance Substation,Substation,Watch,-33.859,121.891,Coastal transmission substation,2024-10-20,500kV,Goldfields-Esperance
+3,Broome Yard,Yard,Alert,-17.961,122.237,Remote storage facility for northern operations,2024-09-05,100 poles,Kimberley
+4,Perth Central Substation,Substation,OK,-31.952,115.857,Primary transmission hub for Perth CBD,2024-11-20,750kV,Central Metropolitan
+5,Fremantle Depot,Depot,OK,-32.054,115.747,Coastal operations and maintenance depot,2024-11-10,35 vehicles,South Metropolitan
+6,Geraldton Substation,Substation,OK,-28.777,114.614,Mid-west regional transmission hub,2024-10-25,330kV,Mid West
+7,Bunbury Switchyard,Switchyard,Watch,-33.327,115.639,Major switching facility for southern region,2024-10-15,500kV,South West
+8,Kalgoorlie Substation,Substation,Alert,-30.749,121.472,Remote goldfields transmission facility,2024-09-28,330kV,Goldfields-Esperance
+9,Albany Depot,Depot,OK,-35.027,117.884,Southern coastal maintenance depot,2024-11-12,25 vehicles,Great Southern
+10,Collie Tower,Tower,OK,-33.361,116.154,Regional transmission tower near power station,2024-11-05,330kV,South West
+11,Mandurah Substation,Substation,OK,-32.527,115.721,Peel region transmission facility,2024-11-18,330kV,Peel
+12,Northam Yard,Yard,Watch,-31.651,116.668,Wheatbelt storage and staging yard,2024-10-08,75 poles,Wheatbelt
+13,Port Hedland Substation,Substation,Critical,-20.311,118.606,Pilbara port industrial transmission,2024-08-15,330kV,Pilbara
+14,Karratha Depot,Depot,Watch,-20.738,116.847,Northwest regional operations depot,2024-10-12,30 vehicles,Pilbara
+15,Perth Northern Substation,Substation,OK,-31.835,115.859,Northern suburbs transmission hub,2024-11-22,500kV,North Metropolitan
+16,Joondalup Depot,Depot,OK,-31.745,115.766,Northern suburbs maintenance depot,2024-11-08,40 vehicles,North Metropolitan
+17,Rockingham Substation,Substation,OK,-32.277,115.731,Southern coastal transmission facility,2024-11-14,330kV,South Metropolitan
+18,Busselton Yard,Yard,OK,-33.651,115.343,Southwest coastal storage yard,2024-10-30,50 poles,South West
+19,Margaret River Tower,Tower,OK,-33.952,115.076,Regional tower for wine region coverage,2024-11-03,132kV,South West
+20,Mundaring Substation,Substation,OK,-31.903,116.165,Perth hills transmission facility,2024-11-16,132kV,Perth Hills
+21,Ellenbrook Depot,Depot,Watch,-31.785,115.973,Northeast suburbs maintenance depot,2024-10-18,28 vehicles,North Metropolitan
+22,Newman Substation,Substation,Alert,-23.360,119.735,Remote Pilbara mining region facility,2024-09-20,220kV,Pilbara
+23,Tom Price Tower,Tower,Watch,-22.694,117.793,Mining region transmission tower,2024-10-05,220kV,Pilbara
+24,Carnarvon Substation,Substation,OK,-24.880,113.658,Gascoyne region transmission facility,2024-11-01,132kV,Gascoyne
+25,Dongara Switchyard,Switchyard,OK,-29.255,114.927,Mid-west coastal switching facility,2024-10-28,132kV,Mid West
+26,Three Springs Yard,Yard,OK,-29.531,115.762,Agricultural region storage yard,2024-10-22,40 poles,Mid West
+27,Moora Depot,Depot,OK,-30.641,116.010,Wheatbelt regional depot,2024-11-06,20 vehicles,Wheatbelt
+28,York Tower,Tower,OK,-31.888,116.767,Historic town transmission tower,2024-11-11,66kV,Wheatbelt
+29,Merredin Substation,Substation,Watch,-31.482,118.277,Eastern wheatbelt transmission hub,2024-10-10,132kV,Wheatbelt
+30,Katanning Depot,Depot,OK,-33.690,117.554,Great southern agricultural depot,2024-10-26,18 vehicles,Great Southern
+31,Narrogin Substation,Substation,OK,-32.934,117.176,Central great southern transmission,2024-11-09,132kV,Great Southern
+32,Denmark Tower,Tower,OK,-34.961,117.356,Southern coastal tower facility,2024-10-31,66kV,Great Southern
+33,Bridgetown Yard,Yard,OK,-33.959,116.135,Southwest forest region yard,2024-10-24,30 poles,South West
+34,Manjimup Depot,Depot,OK,-34.241,116.146,Forest region operations depot,2024-11-04,22 vehicles,South West
+35,Walpole Tower,Tower,OK,-34.978,116.733,Coastal forest transmission tower,2024-10-29,66kV,Great Southern
+36,Exmouth Substation,Substation,OK,-21.933,114.125,Northwest cape transmission facility,2024-10-19,66kV,Gascoyne
+37,Derby Depot,Depot,Watch,-17.312,123.638,Kimberley northwest depot,2024-10-07,15 vehicles,Kimberley
+38,Fitzroy Crossing Substation,Substation,Alert,-18.198,125.568,Remote Kimberley transmission,2024-09-12,66kV,Kimberley
+39,Kununurra Yard,Yard,Watch,-15.777,128.738,Far northeast border storage yard,2024-10-03,35 poles,Kimberley
+40,Wyndham Tower,Tower,OK,-15.487,128.121,Remote northern port tower,2024-10-16,66kV,Kimberley
+41,Halls Creek Depot,Depot,OK,-18.228,127.764,Remote inland Kimberley depot,2024-10-11,12 vehicles,Kimberley
+42,Leonora Substation,Substation,OK,-28.883,121.330,Remote goldfields north transmission,2024-10-27,66kV,Goldfields-Esperance
+43,Laverton Yard,Yard,OK,-28.629,122.401,Far east goldfields storage yard,2024-10-21,25 poles,Goldfields-Esperance
+44,Coolgardie Tower,Tower,OK,-30.956,121.164,Historic goldfields tower,2024-11-07,66kV,Goldfields-Esperance
+45,Kambalda Substation,Substation,Watch,-31.194,121.668,Mining region transmission facility,2024-10-13,132kV,Goldfields-Esperance
+46,Ravensthorpe Depot,Depot,OK,-33.579,120.047,Southeast goldfields depot,2024-10-25,16 vehicles,Goldfields-Esperance
+47,Eucla Tower,Tower,OK,-31.678,128.889,Remote eastern border tower,2024-10-09,66kV,Goldfields-Esperance
+48,Norseman Substation,Substation,OK,-32.198,121.778,Eastern goldfields transmission,2024-11-02,132kV,Goldfields-Esperance
+49,Southern Cross Yard,Yard,OK,-31.228,119.325,Central goldfields storage yard,2024-10-23,30 poles,Goldfields-Esperance
+50,Hyden Depot,Depot,OK,-32.447,118.862,Southeastern wheatbelt depot,2024-10-17,14 vehicles,Wheatbelt
+51,Wickepin Tower,Tower,OK,-32.772,117.542,Central agricultural tower,2024-10-14,66kV,Wheatbelt
+52,Corrigin Substation,Substation,OK,-32.334,117.868,Wheatbelt regional transmission,2024-10-20,66kV,Wheatbelt
+53,Bruce Rock Yard,Yard,OK,-31.869,118.158,Eastern wheatbelt storage,2024-10-19,28 poles,Wheatbelt
+54,Kellerberrin Depot,Depot,OK,-31.624,117.721,Central wheatbelt operations,2024-10-26,15 vehicles,Wheatbelt
+55,Kojonup Tower,Tower,OK,-33.831,117.157,Great southern agricultural tower,2024-10-24,66kV,Great Southern
+56,Cranbrook Substation,Substation,OK,-34.294,117.557,Southern agricultural transmission,2024-10-29,66kV,Great Southern
+57,Mount Barker Depot,Depot,OK,-34.630,117.665,Southern hills operations depot,2024-11-05,18 vehicles,Great Southern
+58,Gnowangerup Yard,Yard,OK,-33.939,118.010,Eastern great southern storage,2024-10-22,32 poles,Great Southern
+59,Jerramungup Tower,Tower,OK,-33.991,118.939,Southeast agricultural tower,2024-10-18,66kV,Great Southern
+60,Ongerup Depot,Depot,OK,-34.039,118.557,Remote southern agricultural depot,2024-10-15,12 vehicles,Great Southern
+61,Pemberton Substation,Substation,OK,-34.446,116.033,Deep southwest forest transmission,2024-11-01,66kV,South West
+62,Northcliffe Yard,Yard,OK,-34.629,116.126,Far southwest storage yard,2024-10-27,22 poles,South West
+63,Augusta Tower,Tower,OK,-34.316,115.157,Southwest cape transmission tower,2024-10-31,66kV,South West
+64,Dunsborough Depot,Depot,OK,-33.613,115.103,Southwest coastal operations depot,2024-11-03,16 vehicles,South West
+65,Yallingup Substation,Substation,OK,-33.649,115.034,Coastal tourist region transmission,2024-10-28,66kV,South West
+66,Harvey Yard,Yard,OK,-33.082,115.903,Southwestern agricultural storage,2024-10-25,35 poles,South West
+67,Pinjarra Depot,Depot,OK,-32.629,115.874,Peel region operations depot,2024-11-07,24 vehicles,Peel
+68,Waroona Tower,Tower,OK,-32.841,115.920,Rural peel transmission tower,2024-10-30,66kV,Peel
+69,Dwellingup Substation,Substation,OK,-32.714,116.063,Forest region transmission facility,2024-10-26,66kV,Peel
+70,Boddington Depot,Depot,Watch,-32.797,116.472,Mining region operations depot,2024-10-12,20 vehicles,Peel
+71,Williams Tower,Tower,OK,-33.027,116.879,Central agricultural tower,2024-10-21,66kV,Wheatbelt
+72,Narembeen Substation,Substation,OK,-32.074,118.383,Eastern wheatbelt transmission,2024-10-19,66kV,Wheatbelt
+73,Lake Grace Yard,Yard,OK,-33.100,118.465,Remote eastern agricultural storage,2024-10-16,26 poles,Wheatbelt
+74,Newdegate Depot,Depot,OK,-33.095,119.018,Far eastern wheatbelt depot,2024-10-14,13 vehicles,Wheatbelt
+75,Kondinin Tower,Tower,OK,-32.516,118.881,Eastern agricultural tower,2024-10-17,66kV,Wheatbelt
+76,Mukinbudin Substation,Substation,OK,-30.895,118.211,Northern wheatbelt transmission,2024-10-22,66kV,Wheatbelt
+77,Beacon Yard,Yard,OK,-30.470,118.253,Northern agricultural storage,2024-10-20,24 poles,Wheatbelt
+78,Perenjori Depot,Depot,OK,-29.432,116.276,Northwest wheatbelt depot,2024-10-18,14 vehicles,Mid West
+79,Mingenew Tower,Tower,OK,-29.195,115.438,Mid-west agricultural tower,2024-10-24,66kV,Mid West
+80,Morawa Substation,Substation,OK,-29.212,116.010,Mid-west rural transmission,2024-10-23,66kV,Mid West
