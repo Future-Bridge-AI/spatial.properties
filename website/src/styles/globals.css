@@ -1,0 +1,252 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* =============================================================================
+   SPATIAL.PROPERTIES GLOBAL STYLES
+
+   Design tokens, base styles, and utility classes for the marketing site.
+   Coordinate grid texture evokes cartography and precision.
+============================================================================= */
+
+@layer base {
+  :root {
+    /* Colour tokens (mirrored from Tailwind for CSS access) */
+    --color-ink: #0F172A;
+    --color-slate: #1E293B;
+    --color-stone: #64748B;
+    --color-cloud: #F8FAFC;
+    --color-grid: #E2E8F0;
+    --color-eucalypt: #059669;
+    --color-eucalypt-light: #D1FAE5;
+    --color-ocean: #2563EB;
+    --color-ocean-light: #DBEAFE;
+    --color-ochre: #D97706;
+    --color-ochre-light: #FEF3C7;
+
+    /* Grid texture settings */
+    --grid-size: 40px;
+    --grid-color: var(--color-grid);
+    --grid-opacity: 0.6;
+  }
+
+  /* Base HTML setup */
+  html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-cloud text-ink font-sans text-body;
+    min-height: 100vh;
+  }
+
+  /* Focus states for accessibility (WCAG AA) */
+  :focus-visible {
+    @apply outline-none ring-2 ring-ocean ring-offset-2 ring-offset-cloud;
+  }
+
+  /* Selection colour */
+  ::selection {
+    @apply bg-ocean-light text-ink;
+  }
+
+  /* Headings default to serif */
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif text-ink;
+  }
+
+  /* Links */
+  a {
+    @apply text-ocean hover:text-ocean-dark transition-colors duration-150;
+  }
+
+  /* Code blocks */
+  code, pre {
+    @apply font-mono;
+  }
+
+  pre {
+    @apply bg-slate text-cloud p-4 rounded-lg overflow-x-auto text-small;
+  }
+
+  code:not(pre code) {
+    @apply bg-grid px-1.5 py-0.5 rounded text-small;
+  }
+}
+
+@layer components {
+  /* ---------------------------------------------------------------------------
+     COORDINATE GRID TEXTURE
+
+     A subtle CSS grid pattern that evokes cartographic precision.
+     Use on hero sections and CTA bands.
+  --------------------------------------------------------------------------- */
+  .grid-texture {
+    background-image:
+      linear-gradient(to right, var(--grid-color) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--grid-color) 1px, transparent 1px);
+    background-size: var(--grid-size) var(--grid-size);
+    background-position: center center;
+  }
+
+  /* Darker variant for dark backgrounds */
+  .grid-texture-dark {
+    --grid-color: rgba(255, 255, 255, 0.08);
+    background-image:
+      linear-gradient(to right, var(--grid-color) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--grid-color) 1px, transparent 1px);
+    background-size: var(--grid-size) var(--grid-size);
+    background-position: center center;
+  }
+
+  /* Faded edges variant (for hero) */
+  .grid-texture-fade {
+    background-image:
+      linear-gradient(to right, var(--grid-color) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--grid-color) 1px, transparent 1px);
+    background-size: var(--grid-size) var(--grid-size);
+    background-position: center center;
+    mask-image: radial-gradient(ellipse 80% 60% at 50% 50%, black 40%, transparent 100%);
+    -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 50%, black 40%, transparent 100%);
+  }
+
+  /* ---------------------------------------------------------------------------
+     SECTION CONTAINERS
+  --------------------------------------------------------------------------- */
+  .section {
+    @apply py-16 md:py-24;
+  }
+
+  .section-lg {
+    @apply py-20 md:py-32;
+  }
+
+  .container-narrow {
+    @apply max-w-4xl mx-auto px-4 md:px-6;
+  }
+
+  .container-wide {
+    @apply max-w-7xl mx-auto px-4 md:px-6;
+  }
+
+  /* ---------------------------------------------------------------------------
+     EYEBROW LABELS
+
+     Small uppercase labels above headings.
+  --------------------------------------------------------------------------- */
+  .eyebrow {
+    @apply text-eyebrow uppercase tracking-wider text-ocean mb-3 block;
+  }
+
+  /* ---------------------------------------------------------------------------
+     PROOF CHIPS
+
+     Small inline badges showing trust signals.
+  --------------------------------------------------------------------------- */
+  .proof-chip {
+    @apply inline-flex items-center gap-1.5 text-small text-stone;
+  }
+
+  .proof-chip::before {
+    content: '✓';
+    @apply text-eucalypt font-bold;
+  }
+
+  /* ---------------------------------------------------------------------------
+     CARD VARIANTS
+  --------------------------------------------------------------------------- */
+  .card {
+    @apply bg-white border border-grid rounded-lg p-6 shadow-card;
+    @apply transition-all duration-200;
+  }
+
+  .card-hover {
+    @apply hover:shadow-card-hover hover:-translate-y-0.5;
+  }
+
+  .card-eucalypt {
+    @apply bg-eucalypt-light border-0;
+  }
+
+  .card-ocean {
+    @apply bg-ocean-light border-0;
+  }
+
+  .card-ochre {
+    @apply bg-ochre-light border-0;
+  }
+
+  /* ---------------------------------------------------------------------------
+     QUOTE CARDS
+
+     For displaying user pain-point quotes.
+  --------------------------------------------------------------------------- */
+  .quote-card {
+    @apply border-l-4 border-grid pl-4 py-2 text-body italic text-slate;
+  }
+
+  /* ---------------------------------------------------------------------------
+     BUTTON BASE STYLES
+
+     Extended via Button component, but base styles defined here.
+  --------------------------------------------------------------------------- */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2;
+    @apply font-sans font-medium text-body;
+    @apply px-6 py-3 rounded;
+    @apply transition-all duration-150;
+    @apply focus-visible:ring-2 focus-visible:ring-ocean focus-visible:ring-offset-2;
+  }
+
+  .btn-primary {
+    @apply bg-ocean text-white shadow-button;
+    @apply hover:bg-ocean-dark hover:shadow-button-hover hover:-translate-y-px;
+    @apply active:translate-y-0 active:shadow-button;
+  }
+
+  .btn-secondary {
+    @apply bg-transparent text-ink border-2 border-ink;
+    @apply hover:bg-cloud;
+    @apply active:bg-grid;
+  }
+
+  .btn-ghost {
+    @apply bg-transparent text-ocean p-0;
+    @apply hover:text-ocean-dark;
+  }
+
+  .btn-ghost::after {
+    content: ' →';
+    @apply transition-transform duration-150;
+  }
+
+  .btn-ghost:hover::after {
+    @apply translate-x-1;
+  }
+}
+
+@layer utilities {
+  /* Animation delay utilities for staggered animations */
+  .animation-delay-100 { animation-delay: 100ms; }
+  .animation-delay-200 { animation-delay: 200ms; }
+  .animation-delay-300 { animation-delay: 300ms; }
+  .animation-delay-400 { animation-delay: 400ms; }
+  .animation-delay-500 { animation-delay: 500ms; }
+
+  /* Max-width for readable text */
+  .max-w-readable {
+    max-width: 65ch;
+  }
+
+  /* Hide scrollbar but keep functionality */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}

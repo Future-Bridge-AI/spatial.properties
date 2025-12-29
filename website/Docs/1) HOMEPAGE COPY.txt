@@ -1,0 +1,738 @@
+Homepage copy
+Meta
+
+Title: Spatial.Properties — Spatial context, delivered like software
+Description: Spatial.Properties is a pack-first geospatial platform. Publish versioned Spatial Packs with licensing and provenance built in — served globally via an edge-optimized spatial context CDN for apps, analytics, and agents.
+
+Hero
+Headline
+
+Spatial context, delivered like software.
+
+Subheadline
+
+Spatial.Properties is a pack-first, cloud-native geospatial platform. We publish authoritative Spatial Packs—versioned bundles of vector, raster, and point‑cloud context—so teams can ship fast maps, reliable analysis, and reproducible agent workflows.
+
+Primary CTA
+
+Book a demo
+
+Secondary CTA
+
+Explore a sample pack
+
+Proof chips (small text)
+
+Versioned, immutable delivery (no silent overwrites)
+
+Open formats: GeoParquet · PMTiles · COG · COPC
+
+Designed for predictable performance: p95 first paint < 2s and p95 tile hits < 500ms (production targets)
+
+Governance-first: licensing + provenance gates before publish
+
+The problem
+Heading
+
+Most spatial systems are built for databases, not distribution.
+
+Body
+
+Modern teams need spatial context everywhere: web apps, analytics notebooks, field devices, and increasingly autonomous tools. But the typical stack makes it hard to answer simple questions with confidence:
+
+“Which layer version did we use?”
+
+“Can we reproduce last week’s decision?”
+
+“Are we allowed to redistribute this dataset?”
+
+“Why is performance great in the office and painful in the field?”
+
+When spatial context isn’t versioned, governed, and cache-friendly, every app rebuilds the same layers—and every stakeholder loses trust.
+
+What we do
+Heading
+
+Spatial Packs are the product. The CDN is the delivery.
+
+Intro
+
+Spatial.Properties treats spatial context as a publishable artifact—not an ad‑hoc set of tables and services.
+
+Three pillars
+1) Pack‑first source of record
+
+A Spatial Pack is a versioned bundle of assets plus a manifest that records:
+
+schemas
+
+licensing and attribution
+
+provenance and derived‑from relationships
+
+integrity hashes
+
+deltas between versions
+
+security classification and visibility rules
+
+Result: your “what” and your “why” ship together.
+
+2) Spatial context CDN
+
+We serve packs through an edge‑optimized CDN:
+
+immutable, versioned paths
+
+long TTLs with strong ETags
+
+range requests for large assets
+
+signed URLs for controlled access
+
+Result: predictable performance without rebuilding the world per application.
+
+3) Deterministic workflows for humans and agents
+
+Tools operate on URIs (e.g., pmtiles://, parquet://) and produce publishable layers + manifest patches.
+
+Result: workflows you can reproduce, audit, and operationalize—without “magic” hidden state.
+
+How it works
+Heading
+
+From source data to edge delivery—without losing trust.
+
+Ingest
+Capture source metadata, license, checksums, and scope.
+
+Normalize & conflate
+Bring multiple sources into canonical schemas with lineage.
+
+Build
+Generate open, modern assets: GeoParquet (SoR), PMTiles (delivery), COG (raster), COPC (point clouds).
+
+Publish
+Create spatialpack.json, compute hashes, register catalog entries, emit events.
+
+Serve & sync
+Deliver globally via CDN. Update clients via deltas when it’s efficient; fall back to full refresh when it’s not.
+
+What makes us different
+Heading
+
+Hard edges. Clear non‑goals.
+
+We’re not a WMS/WFS re-host.
+We publish packs as versioned artifacts designed for modern consumption.
+
+We don’t treat PostGIS as the system of record.
+Databases are scratch/caching. Packs are the authoritative unit.
+
+We ship governance as a feature, not a policy doc.
+License compatibility and provenance validation are enforced before a pack is published.
+
+We’re built for real distribution.
+Edge caching, immutable paths, integrity verification, and signed access are default—not add‑ons.
+
+Solutions (use cases)
+Heading
+
+Built for teams who operate in the real world.
+
+Utilities & resources
+
+Operational layers that teams can trust: assets, access constraints, vegetation or risk overlays, and field-ready basemaps.
+
+Government & public agencies
+
+Publish authoritative datasets with clear provenance, licensing constraints, and consistent multi-tenant access.
+
+Incident & outage response
+
+Make “current context” available fast—plus offline-capable packs when connectivity is degraded.
+
+Apps, analytics, and autonomous tools
+
+Deliver deterministic spatial context to apps and agents that need to explain what they used—and why.
+
+Trust: performance, reliability, security
+Heading
+
+Designed for reliability—measured with SLOs.
+
+Operational targets include:
+
+p95 first visual tile < 2 seconds
+
+p95 tile hit < 500 ms
+
+p95 STAC search < 600 ms
+
+99.9% availability target
+
+DR targets: RPO ≤ 15 min, RTO ≤ 60 min
+
+Security summary (plain language)
+
+OIDC for humans, mTLS identity for devices/agents
+
+Signed URLs with tenant and scope claims
+
+Per-tenant encryption keys and least-privilege access controls
+
+Layer-level classification and visibility rules
+
+Closing CTA
+Heading
+
+See your area as a Spatial Pack.
+Bring one dataset—or one operational question—and we’ll show you what “pack-first” looks like end-to-end.
+
+Primary CTA: Book a demo
+Secondary CTA: Talk to us about a pilot
+
+Footer microcopy
+
+Spatial.Properties — pack-first geospatial infrastructure for apps, analytics, and agents.
+
+Product page copy
+Meta
+
+Title: Product — Spatial Packs, CDN delivery, governance, and tools
+Description: Learn how Spatial.Properties works: Spatial Packs as the source of record, edge delivery via the spatial context CDN, governance gates for licensing and provenance, and deterministic tools for humans and agents.
+
+Hero
+Headline
+
+A geospatial platform built around publishable artifacts.
+
+Subheadline
+
+Spatial.Properties turns spatial context into versioned, governed Spatial Packs—then serves them with predictable performance through an edge‑optimized spatial context CDN and modern APIs.
+
+Primary CTA: Request a pilot
+Secondary CTA: Read the developer docs
+
+Core concept: Spatial Packs
+Heading
+
+What is a Spatial Pack?
+
+A Spatial Pack is a versioned bundle of spatial assets (vector, raster, point cloud) plus a manifest (spatialpack.json) that describes the pack’s identity, scope, layers, schemas, licensing, provenance, integrity, and update strategy.
+
+Spatial Packs are designed to be:
+
+Immutable by version (new versions publish to new paths)
+
+Auditable (license + provenance travel with the data)
+
+Cache-friendly (delivery assets optimized for the edge)
+
+Reproducible (tools operate on URIs and emit manifest patches)
+
+Callout
+
+If you can name it, version it, and verify it—you can operationalize it.
+
+Data formats (why these)
+Heading
+
+Open formats that work in production.
+
+We use modern formats because they make distribution and analysis predictable:
+
+GeoParquet — source of record for vector analytics
+
+PMTiles — fast, portable tile delivery
+
+COG (Cloud Optimized GeoTIFF) — raster streaming and pyramids
+
+COPC (Cloud Optimized Point Cloud) — point clouds that can be served efficiently
+
+STAC — cataloging for discovery and search
+
+Versioning and deltas
+Heading
+
+Versioning you can trust. Deltas when it makes sense.
+
+Every pack version is published under an immutable version path. That means:
+
+no silent overwrites
+
+easy rollbacks
+
+deterministic “what did we ship?”
+
+When updates are small, we publish deltas so clients can pull minimal bytes. When deltas get too large, clients can fall back to a full refresh. Integrity hashes allow clients to verify assets before committing an update.
+
+spatial context CDN
+Heading
+
+Fast delivery, globally—without fragile bespoke map stacks.
+
+Spatial.Properties serves pack assets through an edge CDN designed for real consumption:
+
+long TTL caching with strong ETags
+
+range requests for large assets
+
+signed URLs for controlled access
+
+cache invalidation driven by publishing new versions (not mutating old ones)
+
+Result: applications spend less time “being a GIS,” and more time delivering user value.
+
+Search and discovery
+Heading
+
+Find the right pack fast.
+
+Packs register into a STAC-backed catalog so teams can search by:
+
+bbox / region
+
+time range
+
+schema
+
+license
+
+tenant
+
+You can power “browse and load” experiences, internal catalogs, or agent planning workflows—without custom glue.
+
+Governance that ships with the product
+Heading
+
+Licensing and provenance are enforced—not “best effort.”
+
+Spatial.Properties includes a license & provenance service that:
+
+validates license compatibility before publishing
+
+maintains derived‑from relationships and source versions
+
+exposes lineage for buyers and reviewers
+
+supports marketplace policy lenses (what can be publicly listed vs. tenant-only)
+
+Plain-language promise
+
+If a pack can’t be legally or operationally trusted, it doesn’t publish.
+
+Tools: deterministic operations (MCP)
+Heading
+
+Tools that produce publishable results.
+
+Spatial.Properties supports deterministic tool execution (MCP-style orchestration) where tools:
+
+accept URIs (not hidden database state)
+
+run explicit operations (buffer, overlay, clip, select, raster slope/hillshade, routing, etc.)
+
+produce new layers and a manifest patch so results can be versioned and reused
+
+This is how you move from “analysis in someone’s laptop” to “repeatable operational capability.”
+
+CSP-1 for agent-ready context
+Heading
+
+CSP‑1: context packets for agents and edge clients.
+
+CSP‑1 is a profile layered over Spatial Packs that lets clients fetch only what they need for their near-future operating area—using H3/S2 scope, required layers, policy overlays, and live layer topics.
+
+It’s designed for:
+
+route-based prefetch
+
+offline-first caches
+
+delta apply on-device
+
+integrity verification under constrained networks
+
+What you can build with Spatial.Properties
+Heading
+
+From web maps to field ops to autonomous workflows.
+
+Multi-source basemaps and operational layers with clean versioning
+
+“Load from manifest” viewers and internal portals
+
+Offline bundles for field work
+
+Governance-first public data products
+
+Agent systems that can cite exactly what spatial context they used
+
+Product CTA
+Heading
+
+Publish your first Spatial Pack.
+Start with one region and one theme. We’ll help you define the manifest, build the assets, and ship a version you can trust.
+
+Primary CTA: Request a pilot
+Secondary CTA: Talk to sales
+
+Investors page copy
+Meta
+
+Title: Investors — A pack-first platform for trusted spatial context
+Description: Spatial.Properties is building the infrastructure layer for governed, versioned spatial context—served globally via CDN and designed for modern apps, analytics, and agent workflows.
+
+Hero
+Headline
+
+Spatial context is becoming infrastructure. We’re building the delivery layer.
+
+Subheadline
+
+Spatial.Properties is a pack-first, cloud-native platform that turns geospatial context into versioned, governed products—served through an edge-optimized CDN and modern APIs.
+
+Primary CTA: Request the investor brief
+Secondary CTA: Book an investor call
+
+The shift
+Heading
+
+Why now
+
+Two things are happening at once:
+
+Spatial data is moving from specialist GIS teams into every workflow—operations, risk, planning, and field execution.
+
+New consumers (apps and agents) require fast, scoped, reproducible context, not bespoke map servers and manual provenance audits.
+
+When context is not versioned, governed, and easy to distribute, trust breaks—especially in regulated and high-stakes environments.
+
+What we’re building
+Heading
+
+A product layer for spatial context
+
+Spatial.Properties defines a new primitive: the Spatial Pack.
+
+It’s versioned and immutable by design
+
+It carries licensing, provenance, integrity, and deltas
+
+It’s delivered globally via CDN
+
+It supports deterministic tooling and agent-ready context packets (CSP‑1)
+
+This is “software product thinking” applied to geospatial data.
+
+Initial wedge and expansion
+Heading
+
+Go-to-market focus
+
+Initial wedge: Western Australian utilities and resources
+Next: state/local government and operational platforms
+
+These buyers share the same requirements:
+
+strong governance and provenance
+
+predictable performance in the field
+
+repeatable workflows (not bespoke consulting forever)
+
+controlled redistribution and clear licensing boundaries
+
+Defensibility
+Heading
+
+Why this is hard to copy
+
+Pack-first source of record
+Most platforms treat delivery as a thin layer on top of databases. Packs invert that model.
+
+Governance gates integrated into publishing
+License compatibility and provenance validation are pre-publish hard requirements—not a downstream policy exercise.
+
+CDN-native delivery with immutability
+Versioned, immutable asset paths and integrity verification support reproducibility and large-scale distribution.
+
+CSP‑1 for the agent era
+Scoped context packets (H3/S2), policy overlays, and live layer topics create a clean interface for edge and autonomous systems.
+
+Business model (high-level, concrete)
+Heading
+
+How we make money
+
+Platform subscription per tenant (control plane, governance, catalog)
+
+Usage-based delivery (CDN egress, API volume, tool execution)
+
+Marketplace revenue share for third-party published packs (optional, phased)
+
+The platform is designed so value scales with adoption while keeping operational costs visible and controllable.
+
+Cost transparency (investor-friendly)
+Heading
+
+Operating cost scales predictably
+
+Example AWS-based monthly estimates (Sydney region, Oct 2025 assumptions):
+
+MVP dev/staging: ~$680/month
+
+Production (10TB): ~$5,862/month
+
+Production (100TB): ~$22,770/month
+
+Production (1PB): ~$101,775/month
+
+We treat cost and cache efficiency as product constraints (e.g., cache hit rate targets, delta thresholds, and budget alarms).
+
+What “success” looks like
+Heading
+
+Milestones
+
+MVP
+
+Single-region pack served via CDN
+
+Tile delivery + catalog search
+
+Viewer loads by manifest
+
+Core tools (buffer/overlay)
+
+Basic tenancy + governance foundations
+
+Production
+
+Multi-region + deltas + offline bundles
+
+Multi-source conflation at scale
+
+License enforcement gates
+
+SLO-driven operations and DR targets
+
+Investor CTA
+Heading
+
+Request the investor brief
+We’ll share:
+
+product overview and architecture
+
+go-to-market wedge plan
+
+cost and scaling assumptions
+
+roadmap and milestones
+
+Primary CTA: Request the investor brief
+Secondary CTA: Book an investor call
+
+Small print (form microcopy)
+We respond within 2 business days. If you’d like access to a data room, include your fund and typical check size.
+
+Developers page copy
+Meta
+
+Title: Developers — Build with Spatial Packs and deterministic geospatial tools
+Description: Use Spatial.Properties to fetch versioned Spatial Packs, deliver tiles via CDN, query GeoParquet, and run deterministic geospatial tools that publish new layers and manifest patches.
+
+Hero
+Headline
+
+Stop rebuilding the same layers. Ship spatial context as a versioned pack.
+
+Subheadline
+
+Spatial.Properties gives developers a clean workflow:
+
+fetch a pack manifest
+
+render tiles fast via CDN
+
+query analytics-ready Parquet
+
+run deterministic tools that publish results back as new layers
+
+Primary CTA: Read the docs
+Secondary CTA: Get API access
+
+Core idea (developer framing)
+Heading
+
+Everything is a URI. Everything is versioned.
+
+Instead of coupling your app to a database schema and a map server configuration, you work with:
+
+pack IDs
+
+manifest URLs
+
+layer URIs (pmtiles://, parquet://, cog://)
+
+immutable versions and optional deltas
+
+That makes your app reproducible by default.
+
+Quickstart
+Heading
+
+Quickstart: load a pack and render a map
+
+Step 1 — Get the pack manifest
+curl -H "Authorization: Bearer $TOKEN" \
+  https://api.spatial.properties/v1/packs/spatial.properties:wa:transport:v12
+
+
+You’ll receive (or be redirected to) a spatialpack.json with layer endpoints and metadata.
+
+Step 2 — Render PMTiles in MapLibre
+import maplibregl from "maplibre-gl";
+// Use your preferred PMTiles integration for MapLibre.
+// The manifest provides a TileJSON URL and/or PMTiles URL per layer.
+
+const map = new maplibregl.Map({
+  container: "map",
+  style: "https://cdn.spatial.properties/styles/base.json",
+  center: [115.86, -31.95],
+  zoom: 10
+});
+
+Step 3 — Query GeoParquet (when permitted)
+
+If your tenant policy allows analytics on the client, the manifest exposes Parquet URIs. You can query with DuckDB (server-side or DuckDB-WASM client-side) for fast ad-hoc analysis without standing up bespoke services.
+
+APIs (what exists, plainly)
+Heading
+
+Core APIs
+
+Pack service (build, publish, search)
+POST /v1/packs                 # start a build
+GET  /v1/packs/{packId}        # pack details
+POST /v1/packs/{packId}        # publish pack
+POST /v1/packs/{packId}/delta  # create delta
+POST /v1/packs/search          # catalog search
+
+Marketplace (optional, phased)
+POST /v1/marketplace/publishers
+POST /v1/marketplace/listings
+GET  /v1/marketplace/listings?bbox=&schema=&license=
+POST /v1/marketplace/listings/{id}/delist
+GET  /v1/marketplace/reports/{publisherId}/revenue
+
+Edge sync (for constrained/offline clients)
+POST /v1/edge/peers/register
+POST /v1/edge/exchanges
+POST /v1/edge/beacons
+GET  /v1/edge/hints?packId=&h3=
+
+Deterministic tools (MCP)
+Heading
+
+Run tools that publish results back into packs
+
+Tools accept URIs and produce:
+
+a new published layer (e.g., PMTiles)
+
+a manifest patch referencing the new layer
+
+Example tool request (buffer):
+
+{
+  "tool": "buffer",
+  "input": {
+    "layer_uri": "pmtiles://cdn.spatial.properties/packs/v12/roads.pmtiles",
+    "distance": { "value": 100, "units": "m" },
+    "dissolve": false
+  },
+  "output": {
+    "format": "pmtiles",
+    "publish": true,
+    "layer_name": "roads_buffer"
+  }
+}
+
+Why this matters
+
+Your pipeline becomes:
+
+explainable (inputs are explicit)
+
+repeatable (versions are immutable)
+
+operational (outputs publish into the same product system)
+
+CSP‑1 (agents and edge clients)
+Heading
+
+CSP‑1: fetch only the context you need
+
+CSP‑1 is a profile on top of spatialpack.json that adds:
+
+H3/S2 scoped packet definitions
+
+required layers
+
+policy overlays
+
+live layer topics
+
+client hints for prefetch and delta application
+
+This is how you support:
+
+route-based prefetch
+
+offline-first caches
+
+integrity verification
+
+“show your work” for agent decisions
+
+Authentication & security (developer summary)
+Heading
+
+Security model
+
+Humans: OIDC (Auth0/Okta/Cognito-compatible)
+
+Agents/devices: mTLS identity + device certificates
+
+Assets: signed URLs with tenant/scope claims (and optional anti-replay nonce)
+
+Authorization: ABAC/RBAC with classification and visibility rules at layer/overlay granularity
+
+Encryption: at-rest per-tenant keys; in-transit TLS
+
+Performance notes (useful, not fluffy)
+Heading
+
+Performance, by design
+
+Use immutable version paths for strong caching
+
+Prefer deltas for frequent small updates
+
+Fall back to full refresh when deltas exceed thresholds
+
+Verify integrity hashes before committing cached assets
+
+Target high cache hit rates to keep latency stable at p95
+
+Developer CTA
+Heading
+
+Want a working example with your data?
+We’ll help you publish a pilot pack and provide a reference implementation for your app, analytics workflow, or edge client.
+
+Primary CTA: Get API access
+Secondary CTA: Book a developer walkthrough
