@@ -347,3 +347,105 @@ To support governance and offline scenarios, manifests extend with:
 ## 7. Examples
 
 Minimal CSP-1 packet for an arena (H3 ring at res 9) with venue rules and BLE beacon hints. (See `/examples/csp1-arena.json`).
+
+---
+
+## 8. Pack Composition Patterns
+
+Spatial Packs can be composed to support complex workflows. This section documents common composition patterns.
+
+### 8.1 Three-Pack Compliance Model
+
+For compliance and audit workflows, packs separate concerns into three layers:
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                    CONTEXT PACK                              │
+│  • Regulatory rules (machine-readable JSON)                 │
+│  • Jurisdiction boundaries                                   │
+│  • Environmental overlays                                    │
+│  • Public/Licensed — reusable across customers              │
+└─────────────────────────────────────────────────────────────┘
+                              +
+┌─────────────────────────────────────────────────────────────┐
+│                    PRIVATE PACK                              │
+│  • Customer-owned assets (e.g., network infrastructure)     │
+│  • Stable asset IDs                                          │
+│  • Private — customer-scoped                                 │
+└─────────────────────────────────────────────────────────────┘
+                              ↓
+                    [ Compliance Tools ]
+                              ↓
+┌─────────────────────────────────────────────────────────────┐
+│                    EVIDENCE PACK                             │
+│  • Photos, inspection forms, task events                    │
+│  • Audit reports                                             │
+│  • Immutable — system of record                             │
+└─────────────────────────────────────────────────────────────┘
+```
+
+**Key Principles:**
+- **Context packs** are reusable across customers; they encode jurisdiction-specific rules and boundaries without customer data.
+- **Private packs** contain customer-owned assets; they are combined with context packs for analysis.
+- **Evidence packs** capture immutable, audit-grade records of operations; they reference artifacts from both context and private packs.
+
+**Example: Bushfire Vegetation Clearance**
+- Context: `au-wa-bushfire-veg-clearance-context` (rules, boundaries, fire risk areas)
+- Private: `{customer}-wa-power-network` (poles, spans, conductors)
+- Evidence: `{customer}-veg-clearance-evidence` (photos, forms, audit reports)
+
+> See `spec/features/0005-wa-bushfire-vegetation-clearance.md` for full specification.
+
+### 8.2 Rules Artifact Pattern
+
+Compliance packs include machine-readable rules as JSON artifacts:
+
+```json
+{
+  "rule_id": "clearance.horizontal.hv_bare",
+  "version": "2025.01",
+  "description": "Minimum horizontal clearance for HV bare conductors",
+  "parameters": {
+    "conductor_class": "HV",
+    "conductor_type": "bare",
+    "fire_risk_modifier": 1.5
+  },
+  "formula": "base_clearance * fire_risk_modifier",
+  "base_clearance_m": 3.0,
+  "legal_basis": "WA Electricity Regulations 2024 s.42(1)(b)"
+}
+```
+
+**Requirements:**
+- Rules MUST include `rule_id` and `version` for audit trails
+- Rules MUST reference `legal_basis` where applicable
+- Rule changes MUST follow semver; breaking changes require major version bump
+
+### 8.3 Evidence Artifact Pattern
+
+Evidence packs use content-addressable storage with integrity verification:
+
+```json
+{
+  "artifact_id": "evidence/photos/site_001_20250101_120000.jpg",
+  "hash": "blake3:abc123...",
+  "captured_at": "2025-01-01T12:00:00Z",
+  "captured_by": "field_user_01",
+  "location": {
+    "lat": -31.9505,
+    "lon": 115.8605,
+    "accuracy_m": 5
+  },
+  "references": {
+    "task_id": "task_001",
+    "asset_id": "span_042",
+    "rule_id": "clearance.horizontal.hv_bare@2025.01"
+  }
+}
+```
+
+**Requirements:**
+- Every artifact MUST have a content hash
+- Every artifact MUST be timestamped and spatially anchored
+- Artifacts MUST reference originating tasks and rules
+- Evidence packs are immutable once published

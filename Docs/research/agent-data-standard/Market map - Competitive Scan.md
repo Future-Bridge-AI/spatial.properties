@@ -252,7 +252,74 @@ See `Docs/planning/07-Solar-Pack-Example-and-Licensing.md` for pack details.
 
 ---
 
-9) Spatial Web Consortium
+9) Utility Infrastructure Compliance Market Segment
+
+Growing demand for spatial compliance solutions in utility vegetation management:
+
+Existing Players
+
+Arbora (Vegetation Management)
+- Satellite-based vegetation encroachment detection
+- SaaS model, no offline capability
+- Focused on risk identification, not compliance workflows
+
+EagleView / Pictometry
+- High-resolution aerial imagery for utility inspection
+- Imagery-only, no rules or compliance logic
+- Manual interpretation required
+
+SAP Utilities / Oracle Utilities
+- Enterprise asset management systems
+- GIS as add-on module, not pack-based
+- Complex integration, high cost
+
+Esri Utility Network
+- Network modeling and analysis
+- Requires ArcGIS enterprise stack
+- No offline compliance packs
+
+LIDAR-based vendors (Fugro, NV5)
+- Precision vegetation measurement
+- Project-based, expensive
+- No ongoing compliance workflow
+
+Market Gap
+
+Nobody provides:
+- Pre-packaged regulatory context by jurisdiction
+- Machine-readable clearance rules with audit trails
+- Separation of context (reusable) vs assets (private) vs evidence (immutable)
+- Deterministic compliance decisions with rule tracing
+- LLM-assisted explanations bounded by auditable rules
+- Offline field workflows with evidence capture
+- Audit-grade evidence packs as system of record
+
+WA Bushfire Vegetation Clearance Positioning:
+- First compliance vertical demonstrating pack composition
+- Three-pack model: context + private + evidence
+- Deterministic tools with full audit trail
+- Bounded LLM assistance for explanations and notices
+- Immutable evidence artifacts for regulatory audits
+
+Target Customers:
+- Regional utilities and network operators
+- Local governments (vegetation management responsibilities)
+- Compliance consultants
+- Infrastructure contractors
+- Regulatory bodies (audit verification)
+
+Competitive Differentiation:
+- Rules-first approach (deterministic before LLM)
+- Traceable decisions (rule ID + version in every output)
+- Evidence as first-class artifact (not afterthought)
+- Reusable context packs (regulatory rules as products)
+- Offline-capable field operations
+
+See `spec/features/0005-wa-bushfire-vegetation-clearance.md` for full specification.
+
+---
+
+10) Spatial Web Consortium
 
 The Spatial Web Foundation promotes standards for spatial computing:
 

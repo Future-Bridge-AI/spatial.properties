@@ -11,6 +11,7 @@ Deliver AI-ready spatial context as **Spatial Packs** via a CDN/API. The platfor
 5) **Spec > code**: features are implemented only from merged specs.
 6) **Trust artifacts**: signed manifests, integrity receipts, machine-readable contracts (license + policy) are required for published packs.
 7) **Schema validation**: every published vector layer MUST include a resolvable `schema_uri` with a passing conformance report.
+8) **Deterministic-first tooling**: compliance and analysis tools MUST be deterministic with full rule tracing; LLM assistance is bounded and MUST cite artifacts.
 
 ## Working Agreements
 - Small PRs; ship a walking skeleton first.

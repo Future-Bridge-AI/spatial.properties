@@ -26,6 +26,7 @@ This monorepo is the source of truth for Spatial.Properties — a pack-first geo
 | [0002-schema-registry-validation](spec/features/0002-schema-registry-validation.md) | Schema registry, extensions, validation | Draft |
 | [0003-trust-and-policy-artifacts](spec/features/0003-trust-and-policy-artifacts.md) | Signed manifests, contracts, lineage | Draft |
 | [0004-wa-solar-feasibility-pack](spec/features/0004-wa-solar-feasibility-pack.md) | WA Solar Pack (hero example) | Draft |
+| [0005-wa-bushfire-vegetation-clearance](spec/features/0005-wa-bushfire-vegetation-clearance.md) | Bushfire vegetation clearance (compliance vertical) | Draft |
 
 ---
 
@@ -56,6 +57,24 @@ The **WA Solar Feasibility Pack** demonstrates the pack-first approach end-to-en
 - **Reproducible results** with evidence trail
 
 See [spec/features/0004-wa-solar-feasibility-pack.md](spec/features/0004-wa-solar-feasibility-pack.md) for details.
+
+---
+
+## Compliance Vertical: WA Bushfire Vegetation Clearance
+
+The **WA Bushfire Vegetation Clearance** vertical demonstrates pack composition for compliance workflows:
+
+- **Three-pack model**: Context (regulatory rules) + Private (customer assets) + Evidence (audit records)
+- **Deterministic tools**: Clearance computation, responsibility assignment, safety/environmental gates
+- **LLM-assisted outputs**: Explanations, notices, and audit narratives with mandatory citations
+- **Audit trail**: Full traceability from rule → assessment → action → evidence
+
+**Design Principles:**
+- Rules before language (deterministic first, LLM second)
+- No unbounded inference (all AI outputs cite artifacts)
+- Every output traceable (rule ID + version)
+
+See [spec/features/0005-wa-bushfire-vegetation-clearance.md](spec/features/0005-wa-bushfire-vegetation-clearance.md) for details.
 
 ---
 

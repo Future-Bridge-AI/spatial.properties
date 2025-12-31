@@ -204,6 +204,31 @@ This documentation package now includes **three critical foundational documents*
 
 ---
 
+### Compliance Vertical: Bushfire Vegetation Clearance NEW
+
+The WA Bushfire Vegetation Clearance vertical demonstrates pack composition for compliance workflows.
+
+**Feature Spec:** [`spec/features/0005-wa-bushfire-vegetation-clearance.md`](../spec/features/0005-wa-bushfire-vegetation-clearance.md)
+
+**Contents:**
+- Three-pack model: Context (regulatory rules) + Private (customer assets) + Evidence (audit records)
+- Deterministic compliance tools (clearance computation, responsibility assignment, safety/environmental gates)
+- LLM-assisted tools (explanations, notices, audit narratives) with mandatory artifact citations
+- Evidence pack schema for audit-grade records
+
+**Key Principles:**
+- Rules before language (deterministic first, LLM second)
+- No unbounded inference (all AI outputs cite artifacts)
+- Every output traceable (rule ID + version)
+
+**Architecture Updates:**
+- `01-Architecture-and-Data-Model.md` Section 8: Pack Composition Patterns
+- `02-Services-and-APIs.md` Section 5.5: Compliance Operations (MCP tools)
+
+**Audience:** Utilities, network operators, compliance teams, auditors
+
+---
+
 ### [07-Network-and-Security-Architecture.md](./architecture/07-Network-and-Security-Architecture.md) ⭐ NEW
 **Purpose:** Complete network topology and security controls
 

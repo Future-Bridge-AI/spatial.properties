@@ -104,6 +104,20 @@
 **Acceptance:** Pack validates; loads in demo app; screening workflow runs end-to-end.
 **Reference:** `spec/features/0004-wa-solar-feasibility-pack.md`, `Docs/planning/07-Solar-Pack-Example-and-Licensing.md`
 
+### E18 — WA Bushfire Vegetation Clearance (Weeks 10–18) 🟡 HIGH
+**Scope:** Compliance vertical for vegetation clearance near power infrastructure; three-pack model (context + private + evidence); deterministic + LLM-assisted toolset.
+**Deliverables:**
+- `au-wa-bushfire-veg-clearance-context` pack (rules, boundaries, fire risk)
+- Compliance toolset (5 deterministic + 3 LLM-assisted tools)
+- Evidence pack schema and integrity workflow
+- Pack composition documentation
+**Acceptance:**
+- Context pack validates and loads
+- Deterministic tools produce identical outputs for identical inputs
+- Evidence pack integrity verification passes
+- Full audit trail traversable (rule → assessment → evidence)
+**Reference:** `spec/features/0005-wa-bushfire-vegetation-clearance.md`
+
 ---
 
 ### Non-Critical Path Epics

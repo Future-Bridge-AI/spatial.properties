@@ -187,6 +187,20 @@ Tools accept URIs and produce:
 **AI Operations:**
 - `nl:query_to_ops` - Natural language to operations
 
+**Compliance Operations (Deterministic):**
+- `compliance:compute_clearance` - Calculate required vegetation clearances
+- `compliance:assign_responsibility` - Determine responsible party for compliance actions
+- `compliance:danger_zone_gate` - Safety classification for work near hazards
+- `compliance:environmental_gate` - Environmental permit trigger checks
+- `compliance:risk_to_action` - Convert risk flags to prioritised task lists
+
+**Compliance Operations (LLM-Assisted, Bounded):**
+- `compliance:explain_flag` - Human-readable explanation of compliance flags
+- `compliance:draft_notice` - Generate formal notice text
+- `compliance:audit_narrative` - Summarise compliance activity with citations
+
+> See `spec/features/0005-wa-bushfire-vegetation-clearance.md` for full compliance toolset specification.
+
 #### Buffer Tool Contract (Example)
 
 ```json
