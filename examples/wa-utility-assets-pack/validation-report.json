@@ -1,0 +1,41 @@
+{
+  "run_id": "e66f4e63",
+  "validator": "spatialpack-cli@0.1.0",
+  "pack_path": "C:\\Users\\Craig\\FBAI_VibeGIS_Development\\spatial.properties\\spatial.properties\\examples\\wa-utility-assets-pack",
+  "status": "warn",
+  "checked_at": "2026-01-03T09:18:26.887358Z",
+  "duration_ms": 24,
+  "summary": {
+    "errors": 0,
+    "warnings": 5,
+    "layers_validated": 1
+  },
+  "errors": [],
+  "warnings": [
+    {
+      "rule": "LAYER-002",
+      "message": "Layer file not found: ./layers/assets.parquet",
+      "path": "layers[0].parquet"
+    },
+    {
+      "rule": "LAYER-002",
+      "message": "Layer file not found: ./layers/assets.pmtiles",
+      "path": "layers[0].pmtiles"
+    },
+    {
+      "rule": "STRUCTURE-001",
+      "message": "Expected folder 'layers' not found",
+      "path": "examples\\wa-utility-assets-pack\\layers"
+    },
+    {
+      "rule": "INTEGRITY-001",
+      "message": "Placeholder hash found for layers/assets.parquet",
+      "path": "integrity.asset_hashes.layers/assets.parquet"
+    },
+    {
+      "rule": "INTEGRITY-001",
+      "message": "Placeholder hash found for layers/assets.pmtiles",
+      "path": "integrity.asset_hashes.layers/assets.pmtiles"
+    }
+  ]
+}

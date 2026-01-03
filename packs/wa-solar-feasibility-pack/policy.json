@@ -1,0 +1,80 @@
+{
+  "$schema": "https://schemas.spatial.properties/v1/policy.schema.json",
+  "policy_id": "wa-solar-feasibility-v0-public",
+  "pack_id": "spatial.properties:wa:solar-feasibility:v1",
+  "version": "1.0.0",
+  "effective_date": "2025-01-03",
+
+  "classification": "public",
+  "description": "Open access policy for v0 public release. All layers accessible without authentication.",
+
+  "access": {
+    "default_visibility": "public",
+    "authentication_required": false,
+    "rate_limits": {
+      "requests_per_minute": 60,
+      "bandwidth_mb_per_day": 1000
+    }
+  },
+
+  "layer_policies": [
+    {
+      "layer_pattern": "solar.*",
+      "visibility": "public",
+      "min_role": null,
+      "notes": "Solar resource data is fully public."
+    },
+    {
+      "layer_pattern": "terrain.*",
+      "visibility": "public",
+      "min_role": null,
+      "notes": "Terrain data is fully public."
+    },
+    {
+      "layer_pattern": "hazard.*",
+      "visibility": "public",
+      "min_role": null,
+      "notes": "Hazard constraint data is fully public."
+    },
+    {
+      "layer_pattern": "soils.*",
+      "visibility": "public",
+      "min_role": null,
+      "notes": "Soil classification data is fully public."
+    },
+    {
+      "layer_pattern": "access.*",
+      "visibility": "public",
+      "min_role": null,
+      "notes": "Road network reference is fully public."
+    },
+    {
+      "layer_pattern": "grid.*",
+      "visibility": "public",
+      "min_role": null,
+      "notes": "Grid infrastructure reference is public. Capacity data is link-out only."
+    }
+  ],
+
+  "usage_restrictions": [
+    {
+      "id": "no-sensitive-overlay",
+      "description": "Do not overlay or correlate with sensitive personal data.",
+      "enforcement": "contractual"
+    },
+    {
+      "id": "screening-only",
+      "description": "Pack is for screening purposes only, not engineering design.",
+      "enforcement": "disclaimer"
+    }
+  ],
+
+  "audit": {
+    "logging_enabled": false,
+    "retention_days": 0,
+    "notes": "v0 public release - no audit logging required."
+  },
+
+  "expiry": null,
+  "notes": "This policy applies to the open v0 release. Future versions may introduce tiered access for premium layers."
+}

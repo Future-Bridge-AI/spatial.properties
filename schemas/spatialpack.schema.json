@@ -1,0 +1,346 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.spatial.properties/v1/spatialpack.schema.json",
+  "title": "Spatial Pack Manifest",
+  "description": "Schema for spatialpack.json manifest files - the core metadata document for Spatial Packs",
+  "type": "object",
+  "required": ["pack_id", "version", "created_at", "geography", "theme", "bbox", "crs", "layers"],
+  "properties": {
+    "pack_id": {
+      "type": "string",
+      "description": "Globally unique pack identifier",
+      "pattern": "^[a-z0-9.-]+:[a-z]{2,3}:[a-z0-9-]+:v[0-9]+$",
+      "examples": ["spatial.properties:wa:land-greenfield:v1"]
+    },
+    "version": {
+      "type": "string",
+      "description": "Pack version (semver or YYYY.MM.DD format)",
+      "pattern": "^([0-9]+\\.[0-9]+\\.[0-9]+|[0-9]{4}\\.[0-9]{2}\\.[0-9]{2})$",
+      "examples": ["1.0.0", "2025.01.03"]
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp when pack was created"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp when pack was last updated"
+    },
+    "geography": {
+      "type": "string",
+      "description": "Geographic region code (ISO 3166-2 subdivision or custom)",
+      "minLength": 2,
+      "maxLength": 10,
+      "examples": ["wa", "au-wa", "global"]
+    },
+    "theme": {
+      "type": "string",
+      "description": "Thematic category for the pack",
+      "pattern": "^[a-z0-9-]+$",
+      "examples": ["land-greenfield", "solar-feasibility", "bushfire-ops"]
+    },
+    "bbox": {
+      "type": "array",
+      "description": "Bounding box [minX, minY, maxX, maxY] in CRS units",
+      "items": { "type": "number" },
+      "minItems": 4,
+      "maxItems": 4
+    },
+    "crs": {
+      "type": "string",
+      "description": "Coordinate Reference System (EPSG code)",
+      "pattern": "^EPSG:[0-9]+$",
+      "default": "EPSG:4326",
+      "examples": ["EPSG:4326", "EPSG:3857"]
+    },
+    "tenant": {
+      "type": "string",
+      "description": "Tenant identifier for multi-tenant deployments"
+    },
+    "license": {
+      "$ref": "#/$defs/license"
+    },
+    "provenance": {
+      "$ref": "#/$defs/provenance"
+    },
+    "layers": {
+      "type": "array",
+      "description": "Array of layer definitions",
+      "items": { "$ref": "#/$defs/layer" },
+      "minItems": 1
+    },
+    "deltas": {
+      "type": "array",
+      "description": "Delta updates from previous versions",
+      "items": { "$ref": "#/$defs/delta" }
+    },
+    "integrity": {
+      "$ref": "#/$defs/integrity"
+    },
+    "retention": {
+      "type": "object",
+      "description": "Retention policy for the pack",
+      "properties": {
+        "min_ttl_days": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Minimum time-to-live in days"
+        }
+      }
+    },
+    "security": {
+      "$ref": "#/$defs/security"
+    },
+    "extensions": {
+      "type": "object",
+      "description": "Optional extensions (STAC, CSP-1, custom)",
+      "additionalProperties": true
+    }
+  },
+  "$defs": {
+    "license": {
+      "type": "object",
+      "description": "License information for the pack",
+      "required": ["id", "name"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "License identifier (SPDX or custom)"
+        },
+        "name": {
+          "type": "string",
+          "description": "Human-readable license name"
+        },
+        "attribution": {
+          "type": "string",
+          "description": "Required attribution text"
+        },
+        "url": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL to full license terms"
+        }
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "description": "Data provenance and lineage",
+      "properties": {
+        "sources": {
+          "type": "array",
+          "description": "Source datasets used to create this pack",
+          "items": { "$ref": "#/$defs/source" }
+        },
+        "derived_from": {
+          "type": "array",
+          "description": "Other packs this pack is derived from",
+          "items": {
+            "type": "string",
+            "description": "Pack ID of source pack"
+          }
+        }
+      }
+    },
+    "source": {
+      "type": "object",
+      "description": "Source dataset reference",
+      "required": ["name", "id"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Human-readable source name"
+        },
+        "id": {
+          "type": "string",
+          "description": "Source identifier"
+        },
+        "version": {
+          "type": "string",
+          "description": "Source version or date"
+        },
+        "license": {
+          "type": "string",
+          "description": "License type (SPDX or custom)"
+        },
+        "url": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL to source metadata"
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$",
+          "description": "SHA256 hash of source data"
+        }
+      }
+    },
+    "delta": {
+      "type": "object",
+      "description": "Delta update reference",
+      "required": ["from_version", "to_version"],
+      "properties": {
+        "from_version": { "type": "string" },
+        "to_version": { "type": "string" },
+        "delta_uri": {
+          "type": "string",
+          "format": "uri"
+        },
+        "operations": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["add", "update", "delete"]
+          }
+        }
+      }
+    },
+    "integrity": {
+      "type": "object",
+      "description": "Integrity verification hashes",
+      "properties": {
+        "manifest_sha256": {
+          "type": "string",
+          "description": "SHA256 hash of manifest (excluding this field)"
+        },
+        "asset_hashes": {
+          "type": "object",
+          "description": "Map of asset filename to hash",
+          "additionalProperties": {
+            "type": "string",
+            "description": "SHA256 or BLAKE3 hash"
+          }
+        }
+      }
+    },
+    "security": {
+      "type": "object",
+      "description": "Security classification and access notes",
+      "properties": {
+        "classification": {
+          "type": "string",
+          "enum": ["public", "internal", "restricted", "mixed"],
+          "description": "Overall security classification"
+        },
+        "notes": {
+          "type": "string",
+          "description": "Additional security notes"
+        }
+      }
+    },
+    "layer": {
+      "type": "object",
+      "description": "Layer definition within a Spatial Pack",
+      "required": ["id", "type", "title"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Layer identifier (unique within pack)",
+          "pattern": "^[a-z][a-z0-9_.]+$"
+        },
+        "type": {
+          "type": "string",
+          "enum": ["vector", "raster", "pointcloud"],
+          "description": "Layer data type"
+        },
+        "schema": {
+          "type": "string",
+          "description": "Schema identifier for layer attributes"
+        },
+        "schema_uri": {
+          "type": "string",
+          "format": "uri",
+          "description": "Resolvable URI to JSON Schema definition"
+        },
+        "title": {
+          "type": "string",
+          "description": "Human-readable layer title"
+        },
+        "description": {
+          "type": "string",
+          "description": "Layer description and usage notes"
+        },
+        "tilejson": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL to TileJSON metadata"
+        },
+        "pmtiles": {
+          "type": "string",
+          "description": "URL or path to PMTiles file"
+        },
+        "parquet": {
+          "type": "string",
+          "description": "Path or URL pattern to GeoParquet files"
+        },
+        "cog": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL to Cloud Optimized GeoTIFF"
+        },
+        "copc": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL to Cloud Optimized Point Cloud"
+        },
+        "geometry_type": {
+          "type": "string",
+          "enum": ["Point", "MultiPoint", "LineString", "MultiLineString", "Polygon", "MultiPolygon", "GeometryCollection"],
+          "description": "OGC geometry type for vector layers"
+        },
+        "raster_stats": {
+          "type": "object",
+          "description": "Statistics for raster layers",
+          "properties": {
+            "min": { "type": "number" },
+            "max": { "type": "number" },
+            "mean": { "type": "number" },
+            "nodata": { "type": "number" }
+          }
+        },
+        "index": {
+          "type": "object",
+          "description": "Spatial index configuration",
+          "properties": {
+            "h3_res": { "type": "integer", "minimum": 0, "maximum": 15 },
+            "s2_level": { "type": "integer", "minimum": 0, "maximum": 30 }
+          }
+        },
+        "stats": {
+          "type": "object",
+          "description": "Layer statistics",
+          "properties": {
+            "features": { "type": "integer", "minimum": 0 },
+            "updated_at": { "type": "string", "format": "date-time" },
+            "geometry_valid_pct": { "type": "number", "minimum": 0, "maximum": 100 },
+            "attribute_completeness": {
+              "type": "object",
+              "additionalProperties": { "type": "number", "minimum": 0, "maximum": 1 }
+            }
+          }
+        },
+        "security": {
+          "type": "object",
+          "properties": {
+            "classification": { "type": "string", "enum": ["public", "internal", "restricted"] },
+            "visibility": { "type": "array", "items": { "type": "string" } }
+          }
+        },
+        "validation": {
+          "type": "object",
+          "properties": {
+            "status": { "type": "string", "enum": ["pass", "fail", "warn", "pending"] },
+            "validator": { "type": "string" },
+            "errors": { "type": "integer", "minimum": 0 },
+            "warnings": { "type": "integer", "minimum": 0 }
+          }
+        },
+        "extensions": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    }
+  }
+}

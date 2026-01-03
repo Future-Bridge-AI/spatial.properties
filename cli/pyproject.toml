@@ -1,0 +1,53 @@
+[project]
+name = "spatialpack"
+version = "0.1.0"
+description = "CLI tool for validating and managing Spatial Packs"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [
+    { name = "Future Bridge AI", email = "craig@futurebridgeai.com.au" }
+]
+keywords = ["gis", "geospatial", "spatial-pack", "validation"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: GIS",
+]
+
+dependencies = [
+    "click>=8.1.0",
+    "jsonschema>=4.20.0",
+    "duckdb>=0.9.0",
+    "rich>=13.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-cov>=4.0.0",
+]
+full = [
+    "geopandas>=0.14.0",
+    "pyarrow>=14.0.0",
+    "blake3>=0.4.0",
+    "pmtiles>=3.0.0",
+]
+
+[project.scripts]
+spatialpack = "spatialpack.__main__:cli"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["spatialpack"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]

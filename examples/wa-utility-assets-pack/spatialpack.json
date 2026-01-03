@@ -1,0 +1,86 @@
+{
+  "pack_id": "spatial.properties:wa:utility-assets:v1",
+  "version": "1.0.0",
+  "created_at": "2025-01-03T00:00:00Z",
+  "geography": "wa",
+  "theme": "utility-assets",
+  "bbox": [115.0, -35.0, 129.0, -20.0],
+  "crs": "EPSG:4326",
+  "tenant": "demo",
+
+  "license": {
+    "id": "CC-BY-4.0",
+    "name": "Creative Commons Attribution 4.0",
+    "attribution": "Spatial.Properties Demo Data",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+  },
+
+  "provenance": {
+    "sources": [
+      {
+        "name": "WA Utility Network Survey 2024 (Demo)",
+        "id": "wa-utility-survey-demo-2024",
+        "version": "2024.12",
+        "license": "CC-BY-4.0",
+        "url": "https://spatial.properties/demo/wa-utility-assets"
+      }
+    ],
+    "derived_from": []
+  },
+
+  "layers": [
+    {
+      "id": "utility.assets",
+      "type": "vector",
+      "schema": "sp.utility.assets.v1",
+      "title": "Utility Infrastructure Assets",
+      "description": "80 Western Australia utility infrastructure points including substations, depots, towers, yards, and switchyards.",
+      "parquet": "./layers/assets.parquet",
+      "pmtiles": "./layers/assets.pmtiles",
+      "geometry_type": "Point",
+      "index": {
+        "h3_res": 9
+      },
+      "stats": {
+        "features": 80,
+        "updated_at": "2025-01-03T00:00:00Z",
+        "geometry_valid_pct": 100.0,
+        "attribute_completeness": {
+          "id": 1.0,
+          "name": 1.0,
+          "type": 1.0,
+          "status": 1.0,
+          "lat": 1.0,
+          "lon": 1.0,
+          "description": 1.0,
+          "region": 1.0
+        }
+      },
+      "security": {
+        "classification": "public",
+        "visibility": ["demo:viewer", "demo:analyst"]
+      }
+    }
+  ],
+
+  "deltas": [],
+
+  "integrity": {
+    "manifest_sha256": "PLACEHOLDER_MANIFEST_HASH",
+    "asset_hashes": {
+      "layers/assets.parquet": "PLACEHOLDER_PARQUET_HASH",
+      "layers/assets.pmtiles": "PLACEHOLDER_PMTILES_HASH"
+    }
+  },
+
+  "retention": {
+    "min_ttl_days": 90
+  },
+
+  "security": {
+    "classification": "public",
+    "notes": "Demo dataset with synthetic utility asset locations for Western Australia."
+  },
+
+  "extensions": {}
+}

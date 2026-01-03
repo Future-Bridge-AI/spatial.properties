@@ -1,0 +1,287 @@
+{
+  "pack_id": "spatial.properties:wa:solar-feasibility:v1",
+  "version": "2025.01.03",
+  "created_at": "2025-01-03T00:00:00Z",
+  "geography": "wa",
+  "theme": "solar-feasibility",
+  "bbox": [112.92, -35.19, 129.00, -13.69],
+  "crs": "EPSG:4326",
+
+  "license": {
+    "id": "CC-BY-4.0",
+    "name": "Creative Commons Attribution 4.0 International",
+    "attribution": "Spatial.Properties and data licensors. See sources for individual attributions.",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+  },
+
+  "provenance": {
+    "sources": [
+      {
+        "name": "Bureau of Meteorology / NASA POWER",
+        "id": "bom-nasa-power-solar",
+        "version": "2024",
+        "license": "Open",
+        "url": "https://power.larc.nasa.gov/"
+      },
+      {
+        "name": "Geoscience Australia - National DEM",
+        "id": "ga-national-dem",
+        "version": "2024",
+        "license": "CC-BY-4.0",
+        "url": "https://ecat.ga.gov.au/geonetwork/srv/eng/catalog.search#/metadata/89644"
+      },
+      {
+        "name": "WA Department of Fire and Emergency Services - Bushfire Prone Areas",
+        "id": "wa-dfes-bushfire-prone",
+        "version": "2024",
+        "license": "CC-BY-4.0",
+        "url": "https://catalogue.data.wa.gov.au/dataset/bushfire-prone-areas"
+      },
+      {
+        "name": "CSIRO - Australian Soil Resource Information System (ASRIS)",
+        "id": "csiro-asris-soils",
+        "version": "2024",
+        "license": "CC-BY-4.0",
+        "url": "https://www.asris.csiro.au/"
+      },
+      {
+        "name": "Main Roads Western Australia - Road Network",
+        "id": "mrwa-road-network",
+        "version": "2024",
+        "license": "CC-BY-4.0",
+        "url": "https://catalogue.data.wa.gov.au/dataset/mrwa-road-network"
+      }
+    ],
+    "derived_from": []
+  },
+
+  "layers": [
+    {
+      "id": "solar.exposure",
+      "type": "raster",
+      "schema": "sp.solar.exposure.v1",
+      "title": "Solar Exposure / Irradiance",
+      "description": "Global Horizontal Irradiance (GHI) proxy grid for solar resource assessment. Source: BOM/NASA POWER.",
+      "cog": "./rasters/solar_exposure.tif",
+      "raster_stats": {
+        "min": 3.5,
+        "max": 6.5,
+        "mean": 5.2,
+        "nodata": -9999
+      },
+      "index": { "h3_res": 7 },
+      "stats": {
+        "updated_at": "2025-01-03T00:00:00Z"
+      },
+      "security": {
+        "classification": "public",
+        "visibility": ["public:viewer", "public:analyst"]
+      }
+    },
+    {
+      "id": "terrain.dem",
+      "type": "raster",
+      "schema": "sp.terrain.dem.v1",
+      "title": "Digital Elevation Model",
+      "description": "Elevation model for slope, aspect, and drainage analysis. Source: Geoscience Australia National DEM.",
+      "cog": "./rasters/terrain_dem.tif",
+      "raster_stats": {
+        "min": -10.0,
+        "max": 1250.0,
+        "mean": 320.0,
+        "nodata": -9999
+      },
+      "index": { "h3_res": 8 },
+      "stats": {
+        "updated_at": "2025-01-03T00:00:00Z"
+      },
+      "security": {
+        "classification": "public",
+        "visibility": ["public:viewer", "public:analyst"]
+      }
+    },
+    {
+      "id": "terrain.slope",
+      "type": "raster",
+      "schema": "sp.terrain.slope.v1",
+      "title": "Slope (Percent)",
+      "description": "Derived slope in percent from DEM. Used for grading cost estimation and panel layout.",
+      "cog": "./rasters/terrain_slope.tif",
+      "raster_stats": {
+        "min": 0.0,
+        "max": 90.0,
+        "mean": 5.2,
+        "nodata": -9999
+      },
+      "index": { "h3_res": 8 },
+      "stats": {
+        "updated_at": "2025-01-03T00:00:00Z"
+      },
+      "security": {
+        "classification": "public",
+        "visibility": ["public:viewer", "public:analyst"]
+      }
+    },
+    {
+      "id": "terrain.aspect",
+      "type": "raster",
+      "schema": "sp.terrain.aspect.v1",
+      "title": "Aspect (Degrees)",
+      "description": "Derived aspect in degrees from DEM. North-facing slopes (0/360) optimal for southern hemisphere.",
+      "cog": "./rasters/terrain_aspect.tif",
+      "raster_stats": {
+        "min": 0.0,
+        "max": 360.0,
+        "mean": 180.0,
+        "nodata": -9999
+      },
+      "index": { "h3_res": 8 },
+      "stats": {
+        "updated_at": "2025-01-03T00:00:00Z"
+      },
+      "security": {
+        "classification": "public",
+        "visibility": ["public:viewer", "public:analyst"]
+      }
+    },
+    {
+      "id": "hazard.bushfire_prone_area",
+      "type": "vector",
+      "schema": "sp.hazard.bushfire.v1",
+      "title": "Bushfire Prone Areas",
+      "description": "Designated bushfire prone areas for WA. Fatal constraint for solar development in high-risk zones.",
+      "parquet": "./layers/bushfire_prone_areas.parquet",
+      "pmtiles": "./layers/bushfire_prone_areas.pmtiles",
+      "geometry_type": "Polygon",
+      "index": { "h3_res": 9 },
+      "stats": {
+        "features": 0,
+        "updated_at": "2025-01-03T00:00:00Z",
+        "geometry_valid_pct": 100.0,
+        "attribute_completeness": {
+          "category": 1.0,
+          "risk_level": 1.0
+        }
+      },
+      "security": {
+        "classification": "public",
+        "visibility": ["public:viewer", "public:analyst"]
+      }
+    },
+    {
+      "id": "soils.classification",
+      "type": "vector",
+      "schema": "sp.soils.classification.v1",
+      "title": "Soil Classification",
+      "description": "Soil types and classifications for grading suitability assessment. Source: ASRIS.",
+      "parquet": "./layers/soils_classification.parquet",
+      "pmtiles": "./layers/soils_classification.pmtiles",
+      "geometry_type": "Polygon",
+      "index": { "h3_res": 8 },
+      "stats": {
+        "features": 0,
+        "updated_at": "2025-01-03T00:00:00Z",
+        "geometry_valid_pct": 100.0,
+        "attribute_completeness": {
+          "soil_type": 1.0,
+          "drainage_class": 0.9
+        }
+      },
+      "security": {
+        "classification": "public",
+        "visibility": ["public:viewer", "public:analyst"]
+      }
+    },
+    {
+      "id": "access.roads_reference",
+      "type": "vector",
+      "schema": "sp.access.roads.v1",
+      "title": "Roads Reference",
+      "description": "Road network for access analysis. Proximity to roads affects construction logistics.",
+      "parquet": "./layers/roads_reference.parquet",
+      "pmtiles": "./layers/roads_reference.pmtiles",
+      "geometry_type": "LineString",
+      "index": { "h3_res": 9 },
+      "stats": {
+        "features": 0,
+        "updated_at": "2025-01-03T00:00:00Z",
+        "geometry_valid_pct": 100.0,
+        "attribute_completeness": {
+          "road_class": 1.0,
+          "surface_type": 0.8
+        }
+      },
+      "security": {
+        "classification": "public",
+        "visibility": ["public:viewer", "public:analyst"]
+      }
+    },
+    {
+      "id": "grid.infrastructure_reference",
+      "type": "vector",
+      "schema": "sp.grid.infrastructure.v1",
+      "title": "Grid Infrastructure Reference",
+      "description": "Substations and transmission lines for connection proximity analysis. Link-out for detailed capacity.",
+      "parquet": "./layers/grid_infrastructure.parquet",
+      "pmtiles": "./layers/grid_infrastructure.pmtiles",
+      "geometry_type": "Point",
+      "index": { "h3_res": 8 },
+      "stats": {
+        "features": 0,
+        "updated_at": "2025-01-03T00:00:00Z",
+        "geometry_valid_pct": 100.0,
+        "attribute_completeness": {
+          "facility_type": 1.0,
+          "voltage_kv": 0.9
+        }
+      },
+      "security": {
+        "classification": "public",
+        "visibility": ["public:viewer", "public:analyst"]
+      }
+    }
+  ],
+
+  "deltas": [],
+
+  "integrity": {
+    "manifest_sha256": "PLACEHOLDER_MANIFEST_HASH",
+    "asset_hashes": {
+      "rasters/solar_exposure.tif": "PLACEHOLDER_SOLAR_HASH",
+      "rasters/terrain_dem.tif": "PLACEHOLDER_DEM_HASH",
+      "rasters/terrain_slope.tif": "PLACEHOLDER_SLOPE_HASH",
+      "rasters/terrain_aspect.tif": "PLACEHOLDER_ASPECT_HASH",
+      "layers/bushfire_prone_areas.parquet": "PLACEHOLDER_BUSHFIRE_HASH",
+      "layers/soils_classification.parquet": "PLACEHOLDER_SOILS_HASH",
+      "layers/roads_reference.parquet": "PLACEHOLDER_ROADS_HASH",
+      "layers/grid_infrastructure.parquet": "PLACEHOLDER_GRID_HASH"
+    }
+  },
+
+  "retention": {
+    "min_ttl_days": 180
+  },
+
+  "security": {
+    "classification": "public",
+    "notes": "v0 Open release. All layers are publicly accessible. Grid capacity data is link-out only."
+  },
+
+  "extensions": {
+    "links": [
+      {
+        "rel": "grid-capacity-signal",
+        "title": "Western Power Network Capacity Map",
+        "href": "https://westernpower.com.au/our-energy-evolution/grid-transformation/network-capacity-mapping-tool/",
+        "description": "External tool for grid connection capacity assessment. Signal only, not guarantee."
+      },
+      {
+        "rel": "heritage-inquiry",
+        "title": "WA Aboriginal Heritage Inquiry System",
+        "href": "https://www.dplh.wa.gov.au/ahis",
+        "description": "Heritage and Aboriginal Cultural Heritage inquiry. Required before development."
+      }
+    ],
+    "disclaimer": "This pack is for SCREENING ONLY. Not suitable for engineering design or final investment decisions. Grid capacity signals are indicative only."
+  }
+}

@@ -1,0 +1,100 @@
+{
+  "$schema": "https://schemas.spatial.properties/v1/contract.schema.json",
+  "contract_id": "wa-solar-feasibility-v0-open",
+  "pack_id": "spatial.properties:wa:solar-feasibility:v1",
+  "version": "1.0.0",
+  "effective_date": "2025-01-03",
+
+  "license": {
+    "spdx_id": "CC-BY-4.0",
+    "name": "Creative Commons Attribution 4.0 International",
+    "url": "https://creativecommons.org/licenses/by/4.0/",
+    "summary": "Free to share and adapt with attribution."
+  },
+
+  "terms": {
+    "redistribution": "allowed",
+    "derivatives": "allowed",
+    "commercial_use": "allowed",
+    "attribution_required": true,
+    "share_alike": false
+  },
+
+  "attribution": {
+    "required_text": "Data from WA Solar Feasibility Pack by Spatial.Properties. Individual layer attributions apply.",
+    "format": "text or hyperlink",
+    "placement": "visible in derived works and reports"
+  },
+
+  "constraints": [
+    {
+      "id": "screening-only",
+      "description": "This pack is for screening and early feasibility assessment ONLY.",
+      "rationale": "Data resolution and currency not suitable for engineering design."
+    },
+    {
+      "id": "grid-signal-not-guarantee",
+      "description": "Grid capacity information is indicative signal only, not a connection guarantee.",
+      "rationale": "Actual connection capacity subject to formal application and network operator assessment."
+    },
+    {
+      "id": "heritage-check-required",
+      "description": "Aboriginal Cultural Heritage clearance required before any ground disturbance.",
+      "rationale": "Legal requirement under WA Aboriginal Heritage Act."
+    }
+  ],
+
+  "layer_licenses": [
+    {
+      "layer_id": "solar.exposure",
+      "license": "Open (NASA POWER / BOM)",
+      "attribution": "NASA Langley Research Center POWER Project"
+    },
+    {
+      "layer_id": "terrain.dem",
+      "license": "CC-BY-4.0",
+      "attribution": "Geoscience Australia"
+    },
+    {
+      "layer_id": "terrain.slope",
+      "license": "Derived",
+      "attribution": "Derived from Geoscience Australia DEM"
+    },
+    {
+      "layer_id": "terrain.aspect",
+      "license": "Derived",
+      "attribution": "Derived from Geoscience Australia DEM"
+    },
+    {
+      "layer_id": "hazard.bushfire_prone_area",
+      "license": "CC-BY-4.0",
+      "attribution": "Department of Fire and Emergency Services WA"
+    },
+    {
+      "layer_id": "soils.classification",
+      "license": "CC-BY-4.0",
+      "attribution": "CSIRO ASRIS"
+    },
+    {
+      "layer_id": "access.roads_reference",
+      "license": "CC-BY-4.0",
+      "attribution": "Main Roads Western Australia"
+    },
+    {
+      "layer_id": "grid.infrastructure_reference",
+      "license": "Link-out",
+      "attribution": "Western Power (reference only)"
+    }
+  ],
+
+  "warranty": {
+    "type": "AS-IS",
+    "description": "Data provided as-is without warranty of accuracy, completeness, or fitness for purpose."
+  },
+
+  "contact": {
+    "publisher": "Spatial.Properties (Future Bridge AI)",
+    "email": "support@spatial.properties",
+    "url": "https://spatial.properties"
+  }
+}

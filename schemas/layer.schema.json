@@ -1,0 +1,216 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.spatial.properties/v1/layer.schema.json",
+  "title": "Spatial Pack Layer",
+  "description": "Schema for layer definitions within a Spatial Pack manifest",
+  "type": "object",
+  "required": ["id", "type", "title"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Layer identifier (unique within pack)",
+      "pattern": "^[a-z][a-z0-9_.]+$",
+      "examples": ["land.tenure", "env.vegetation", "elev.dem_5m"]
+    },
+    "type": {
+      "type": "string",
+      "enum": ["vector", "raster", "pointcloud"],
+      "description": "Layer data type"
+    },
+    "schema": {
+      "type": "string",
+      "description": "Schema identifier for layer attributes",
+      "pattern": "^[a-z]+\\.[a-z][a-z0-9_.]+\\.v[0-9]+$",
+      "examples": ["sp.land.tenure.v1", "sp.env.vegetation.v1"]
+    },
+    "schema_uri": {
+      "type": "string",
+      "format": "uri",
+      "description": "Resolvable URI to JSON Schema definition"
+    },
+    "title": {
+      "type": "string",
+      "description": "Human-readable layer title"
+    },
+    "description": {
+      "type": "string",
+      "description": "Layer description and usage notes"
+    },
+    "tilejson": {
+      "type": "string",
+      "format": "uri",
+      "description": "URL to TileJSON metadata (for vector tiles)"
+    },
+    "pmtiles": {
+      "type": "string",
+      "format": "uri",
+      "description": "URL to PMTiles file"
+    },
+    "parquet": {
+      "type": "string",
+      "description": "Path or URL pattern to GeoParquet files",
+      "examples": ["s3://bucket/path/*.parquet", "./layers/data.parquet"]
+    },
+    "cog": {
+      "type": "string",
+      "format": "uri",
+      "description": "URL to Cloud Optimized GeoTIFF (for raster)"
+    },
+    "copc": {
+      "type": "string",
+      "format": "uri",
+      "description": "URL to Cloud Optimized Point Cloud (for pointcloud)"
+    },
+    "overviews": {
+      "type": "string",
+      "format": "uri",
+      "description": "URL to overview file (.ovr)"
+    },
+    "geometry_type": {
+      "type": "string",
+      "enum": ["Point", "MultiPoint", "LineString", "MultiLineString", "Polygon", "MultiPolygon", "GeometryCollection"],
+      "description": "OGC geometry type for vector layers"
+    },
+    "raster_stats": {
+      "type": "object",
+      "description": "Statistics for raster layers",
+      "properties": {
+        "min": { "type": "number" },
+        "max": { "type": "number" },
+        "mean": { "type": "number" },
+        "stddev": { "type": "number" },
+        "nodata": { "type": "number" }
+      }
+    },
+    "index": {
+      "type": "object",
+      "description": "Spatial index configuration",
+      "properties": {
+        "h3_res": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 15,
+          "description": "H3 resolution level"
+        },
+        "s2_level": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 30,
+          "description": "S2 cell level"
+        }
+      }
+    },
+    "stats": {
+      "type": "object",
+      "description": "Layer statistics and quality metrics",
+      "properties": {
+        "features": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Feature count"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Last update timestamp"
+        },
+        "geometry_valid_pct": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100,
+          "description": "Percentage of valid geometries"
+        },
+        "attribute_completeness": {
+          "type": "object",
+          "description": "Map of attribute name to completeness ratio (0-1)",
+          "additionalProperties": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          }
+        }
+      }
+    },
+    "security": {
+      "type": "object",
+      "description": "Layer-level security settings",
+      "properties": {
+        "classification": {
+          "type": "string",
+          "enum": ["public", "internal", "restricted"],
+          "description": "Security classification"
+        },
+        "visibility": {
+          "type": "array",
+          "description": "Role patterns that can access this layer",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z0-9]+:[a-z]+$"
+          },
+          "examples": [["demo:viewer", "demo:analyst"]]
+        }
+      }
+    },
+    "validation": {
+      "type": "object",
+      "description": "Validation status and conformance",
+      "properties": {
+        "conformance_uri": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL to conformance report"
+        },
+        "status": {
+          "type": "string",
+          "enum": ["pass", "fail", "warn", "pending"],
+          "description": "Validation status"
+        },
+        "validator": {
+          "type": "string",
+          "description": "Validator name and version"
+        },
+        "rule_set_hash": {
+          "type": "string",
+          "description": "Hash of validation rule set used"
+        },
+        "errors": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "warnings": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "extensions": {
+      "type": "array",
+      "description": "Extension identifiers applied to this layer",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z0-9]+:[a-z0-9_-]+@[0-9]+\\.[0-9]+$",
+        "examples": ["sp:temporal@1.0", "sp:versioning@1.0"]
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": { "type": { "const": "vector" } }
+      },
+      "then": {
+        "properties": {
+          "geometry_type": { "type": "string" }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": { "type": { "const": "raster" } }
+      },
+      "then": {
+        "required": ["cog"]
+      }
+    }
+  ]
+}

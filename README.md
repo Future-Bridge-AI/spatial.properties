@@ -9,6 +9,10 @@ This monorepo is the source of truth for Spatial.Properties — a pack-first geo
 | `spec/` | Feature specifications | `spec/constitution.md` |
 | `adr/` | Architecture Decision Records | `adr/0001-pack-first-architecture.md` |
 | `Docs/` | Architecture & planning docs | `Docs/README.md` |
+| `schemas/` | JSON Schema definitions | `schemas/spatialpack.schema.json` |
+| `cli/` | `spatialpack` CLI tool | `cd cli && pip install -e . && spatialpack --help` |
+| `packs/` | Production spatial packs | `packs/wa-solar-feasibility-pack/` |
+| `examples/` | Example/test packs | `examples/wa-utility-assets-pack/` |
 | `website/` | Marketing website (Next.js 14) | `cd website && npm run dev` |
 | `demo/` | Offline GIS demo (DuckDB, MapLibre) | `cd demo/demo-offline-gis && npm run serve` |
 | `cng-stack/` | Speckit workflow framework | — |
@@ -57,6 +61,29 @@ The **WA Solar Feasibility Pack** demonstrates the pack-first approach end-to-en
 - **Reproducible results** with evidence trail
 
 See [spec/features/0004-wa-solar-feasibility-pack.md](spec/features/0004-wa-solar-feasibility-pack.md) for details.
+
+**Pack Manifest:** [packs/wa-solar-feasibility-pack/spatialpack.json](packs/wa-solar-feasibility-pack/spatialpack.json)
+
+---
+
+## CLI Tooling
+
+The `spatialpack` CLI validates and manages spatial packs:
+
+```bash
+cd cli
+pip install -e .
+spatialpack validate ../packs/wa-solar-feasibility-pack/
+```
+
+**Validation Rules:**
+- Manifest existence and JSON validity
+- JSON Schema conformance (Draft 2020-12)
+- Pack ID format, bbox, timestamps
+- Layer file existence
+- Integrity hash verification
+
+See [cli/README.md](cli/README.md) for full documentation.
 
 ---
 
